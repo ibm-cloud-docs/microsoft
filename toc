@@ -1,0 +1,51 @@
+{:navgroup: .navgroup}
+{:topicgroup: .topicgroup}
+
+{: .toc subcollection="microsoft" category="compute" audience="workload" href="/docs/microsoft" path="microsoft"}
+Microsoft SQL Server deployment to Intel Virtual Server (Gen2) with VPC network
+
+    {: .navgroup id="learn"}
+    01-about.md
+    {: .navgroup-end}
+    
+    {: .navgroup id="howto"}
+    {: .topicgroup}
+    Single AZ deployment pattern
+        02-single-az.md
+        03-bastion.md
+        04-ad.md
+        05-sql.md
+        
+    {: .topicgroup}
+    Dual AZ deployment pattern
+        06-dual-az.md
+        07-ad.md
+        08-file-share.md
+        09-create-cluster.md
+        
+    {: .topicgroup}
+    Dual multi-zone region deployment pattern
+        10-dual-mzr.md
+        11-ad.md
+        12-extend-cluster.md
+        13-baseline.md
+        14-security-groups.md
+        15-testing.md
+        
+    16-ops.md
+    17-migration.md
+    18-configini.md
+    {: .navgroup-end}
+
+    {: .navgroup id="help"}
+    {: .topicgroup}
+    Troubleshooting Microsoft SQL
+        ts-ms-sql-verify-open-ports.md
+        ts-ms-sql-remove-smb-share.md
+        ts-ms-sql-rename-virtual-servers.md
+        ts-ms-sql-add-text-to-file.md
+        ts-ms-sql-use-domain-service-account.md
+        ts-ms-sql-verify-dnn.md
+        ts-ms-sql-verify-server-listening.md
+        ts-ms-sql-windows-server-updates.md
+    {: .navgroup-end}
