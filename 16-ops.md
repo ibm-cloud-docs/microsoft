@@ -64,7 +64,7 @@ A flow log is a summary of the network traffic between two virtual network inter
   * Interface - Collects data for a specific network interface on a specific virtual server.
 
 * Storage - Flow logs are stored in an IBM Cloud Object Storage (COS) bucket. This bucket is configured during the setup of the flow log collector.
-* Presentation - IBM Cloud SQL Query is IBM's serverless SQL service on data on COS, and is used to create queries on the flow logs stored in COS. Refer to [Viewing flow log objects](/docs/vpc?topic=vpc-fl-analyze) and [Using IBM Cloud SQL Query](https://dataplatform.cloud.ibm.com/exchange/public/entry/view/4a9bb1c816fb1e0f31fec5d580e4e14d) for further information.
+* Presentation - {{site.data.keyword.sqlquery_full}} is IBM's serverless SQL service on data on COS, and is used to create queries on the flow logs stored in COS. Refer to [Viewing flow log objects](/docs/vpc?topic=vpc-fl-analyze) and [Using {{site.data.keyword.sqlquery_notm}}](https://dataplatform.cloud.ibm.com/exchange/public/entry/view/4a9bb1c816fb1e0f31fec5d580e4e14d) for further information.
 
 ## Monitoring
 {: #mssql-ops-monitoring}
