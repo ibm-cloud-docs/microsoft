@@ -25,11 +25,16 @@ toc:
       - topic: microsoft-license-mobility.md
         navtitle: Microsoft License Mobility
       - topic: microsoft-license-mobility-process.md
-        navtitle: Microsoft License Mobility Deployment Process
-      - topic: microsoft-shared-responsibility-for-os.md
-        navtitle: Microsoft Shared Responsibility for OS
-      - topic: microsoft-onboarding.md
-        navtitle: Microsoft Onboarding
+
+  - navgroup:
+      id: howto
+      topics:
+      - topicgroup:
+        label: Microsoft on VPC
+        topics:
+        - link:
+            label: Virtual Private Cloud Solution
+            href: https://www.ibm.com/cloud/vpc
 
   - navgroup:
       id: reference
