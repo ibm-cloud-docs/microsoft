@@ -34,4 +34,4 @@ To verify that the ports are open, enter the following command:
 `Test-NetConnection -ComputerName <name> -Port <port> -InformationLevel "Detailed"`
 {: pre}
 
-For more information, refer to [Test-NetConnection](https://docs.microsoft.com/en-us/powershell/module/nettcpip/test-netconnection?view=windowsserver2019-ps){:external}.
+For more information, refer to [Test-NetConnection](https://docs.microsoft.com/en-us/powershell/module/nettcpip/test-netconnection?view=windowsserver2019-ps){: external}.

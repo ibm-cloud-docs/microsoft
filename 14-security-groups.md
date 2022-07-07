@@ -186,7 +186,7 @@ This SMB traffic is required for domain access and file shares.
 ## Replication traffic between domain controllers
 {: #mssql-securitygroups-adrep1}
 
-In this example we allow all ports between the active directory subnets. See [How to configure a firewall for Active Directory domains and trusts](https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/config-firewall-for-ad-domains-and-trusts#windows-server-2008-and-later-versions){:external} for all the ptotocols used between domain controllers to enable you to lock this down further if required.
+In this example we allow all ports between the active directory subnets. See [How to configure a firewall for Active Directory domains and trusts](https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/config-firewall-for-ad-domains-and-trusts#windows-server-2008-and-later-versions){: external} for all the ptotocols used between domain controllers to enable you to lock this down further if required.
 
 * Security Group: AD
 * Rule: Inbound

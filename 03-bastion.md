@@ -79,10 +79,10 @@ ibmcloud is instance-initialization-values <INSTANCE_ID> --private-key @~/.ssh/i
 
 In this deployment pattern we are using the following products which should be downloaded to the bastion host:
 
-* MS SQL Server Developer Edition which can be downloaded from [SQL Server products & resources](https://www.microsoft.com/en-gb/evalcenter/evaluate-sql-server-2019?filetype=EXE){:external}.
-* SQL Server Management Studio (SSMS) which can be downloaded from [Download SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15){:external}.
-* Diskspd is a storage subsystem testing tool and can be downloaded from [DISKSPD 2.0.21a](https://github.com/Microsoft/diskspd/releases){:external}.
-* PowerShell can interact with SQL Server instances, however, requires a module to be installed. If this module must be installed on the non-Internet connected SQL sever then download this module. Refer to [SqlServer](https://docs.microsoft.com/en-us/powershell/module/sqlserver/?view=sqlserver-ps){:external} for more details.
+* MS SQL Server Developer Edition which can be downloaded from [SQL Server products & resources](https://www.microsoft.com/en-gb/evalcenter/evaluate-sql-server-2019?filetype=EXE){: external}.
+* SQL Server Management Studio (SSMS) which can be downloaded from [Download SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15){: external}.
+* Diskspd is a storage subsystem testing tool and can be downloaded from [DISKSPD 2.0.21a](https://github.com/Microsoft/diskspd/releases){: external}.
+* PowerShell can interact with SQL Server instances, however, requires a module to be installed. If this module must be installed on the non-Internet connected SQL sever then download this module. Refer to [SqlServer](https://docs.microsoft.com/en-us/powershell/module/sqlserver/?view=sqlserver-ps){: external} for more details.
 
 You may find that Windows Explorer a little difficult to download files and want to disable IE Enhanced Security Configuration:
 
@@ -160,7 +160,7 @@ The following PowerShell commands are used to accomplish the following:
    New-SmbShare -Name "Downloads" -Path "C:\Users\Administrator\Downloads" -ReadAccess $user
    ```
 
-   The share will now be accessible from servers in your VPC as long as the security group allows the traffic. For more information on SMB, see [Overview of file sharing using the SMB 3 protocol in Windows Server](https://docs.microsoft.com/en-us/windows-server/storage/file-server/file-server-smb-overview){:external}.
+   The share will now be accessible from servers in your VPC as long as the security group allows the traffic. For more information on SMB, see [Overview of file sharing using the SMB 3 protocol in Windows Server](https://docs.microsoft.com/en-us/windows-server/storage/file-server/file-server-smb-overview){: external}.
 
 ## Install SQL Server Management Studio
 {: #mssql-bastion-smss}
