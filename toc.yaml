@@ -1,0 +1,83 @@
+#  Name your file `toc.yaml`
+#  Make sure you include all nav file coding requirements, as defined in https://test.cloud.ibm.com/docs/writing?topic=writing-code-nav
+#  Anything with a fully qualified URL with `http` or `https` will get an external link icon added to the nav entry
+
+toc:
+  properties:
+    subcollection: microsoft
+    service-name: microsoft
+    category: compute
+    audience: solution
+    href: /docs/microsoft?topic=microsoft-get-started
+    path: microsoft
+    label: Microsoft
+    
+ #  List your getting started tutorial (getting-started.md) as the first item in the Get started nav group. See https://test.cloud.ibm.com/docs/writing?topic=writing-navigation for more details on the toc design.
+  entries:
+  - navgroup:
+      id: learn
+      topics:
+      - topic: microsoft-getting-started.md
+        navtitle: Getting started
+      - topic: microsoft-byol.md
+        navtitle: Microsoft Bring Your Own License
+      - topic: microsoft-license-mobility.md
+        navtitle: Microsoft License Mobility
+      - topic: microsoft-license-mobility-process.md
+        navtitle: Microsoft License Mobility Deployment Process
+      - topic: microsoft-shared-responsibility-for-os.md
+        navtitle: Microsoft Shared Responsibility for OS
+      - topic: microsoft-onboarding.md
+        navtitle: Microsoft Onboarding
+
+  - navgroup:
+      id: reference
+      topics:
+      - topicgroup:
+          label: Microsoft SQL Server on VPC
+          topics:
+          - 01-about.md
+          - topicgroup:
+              label: Single AZ deployment pattern
+              topics:
+              - 02-single-az.md
+              - 03-bastion.md
+              - 04-ad.md
+              - 05-sql.md
+          - topicgroup:
+              label: Dual AZ deployment pattern
+              topics:
+              - 06-dual-az.md
+              - 07-ad.md
+              - 08-file-share.md
+              - 09-create-cluster.md
+          - topicgroup:
+              label: Dual multi-zone region deployment pattern
+              topics:
+              - 10-dual-mzr.md
+              - 11-ad.md
+              - 12-extend-cluster.md
+              - 13-baseline.md
+              - 14-security-groups.md
+              - 15-testing.md
+              - 16-ops.md
+              - 17-migration.md
+              - 18-configini.md
+
+  - navgroup:
+      id: help
+      topics:
+      - topicgroup:
+          label: Troubleshooting
+          topics:
+          - topicgroup:
+              label: Troubleshooting MS SQL
+              topics:
+              - ts-ms-sql-verify-open-ports.md
+              - ts-ms-sql-remove-smb-share.md
+              - ts-ms-sql-rename-virtual-servers.md
+              - ts-ms-sql-add-text-to-file.md
+              - ts-ms-sql-use-domain-service-account.md
+              - ts-ms-sql-verify-dnn.md
+              - ts-ms-sql-verify-server-listening.md
+              - ts-ms-sql-windows-server-updates.md
