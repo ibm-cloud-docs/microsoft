@@ -47,12 +47,46 @@ toc:
               href: /vpc?topic=vpc-guest-os-lifecycle
       - topicgroup:
           label: Microsoft Images - Day 0
+          topics:
+          - link:
+              label: MSFT ISO Images offered
+              href: /docs/vpc?topic=vpc-about-images
+          - link:
+              label: Lifecycle of MSFT Images VPC
+              href: /docs/vpc?topic=vpc-guest-os-lifecycle
       - topicgroup:
           label: Microsoft Images - Day 1
+          topics:
+          - link:
+              label: Select a MSFT stock Image
+              href: /docs/vpc?topic=vpc-about-images#stock-images
+          - link:
+              label: Select a MSFT custom Image
+              href: /docs/vpc?topic=vpc-planning-custom-images
+          - link:
+              label: Creating a MSFT custom Image
+              href: /docs/vpc?topic=vpc-create-windows-custom-image
       - topicgroup:
           label: Microsoft Images - Day 2
+          topics:
+          - link:
+              label: Patch a Microsoft image - Security and Patches
+              href: /docs/vpc?topic=vpc-responsibilities-vpc
       - topicgroup:
           label: Microsoft on Classic
+          topics:
+          - link:
+              label: IBM Cloud Bare Metal Severs Solution
+              href: https://www.ibm.com/cloud/bare-metal-servers/classic
+          - link:
+              label: IBM Cloud Bare Metal Servers Docs
+              href: /docs/bare-metal?topic=bare-metal-getting-started
+          - link:
+              label: Guest OS Lifecycle for Bare Metal
+              href: /docs/bare-metal?topic=bare-metal-getting-started
+          - link:
+              label: About Software for Bare Metal
+              href: /docs/bare-metal?topic=bare-metal-about-software
 
   - navgroup:
       id: reference
