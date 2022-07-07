@@ -15,127 +15,132 @@ toc:
     
  #  List your getting started tutorial (getting-started.md) as the first item in the Get started nav group. See https://test.cloud.ibm.com/docs/writing?topic=writing-navigation for more details on the toc design.
   entries:
-  - navgroup:
-      id: learn
-      topics:
-      - topic: microsoft-getting-started.md
-        navtitle: Overview of Microsoft on IBM
-      - topic: microsoft-byol.md
-        navtitle: Bring Your Own License (BYOL)
-      - topic: microsoft-license-mobility.md
-        navtitle: License Mobility Overview
-      - topic: microsoft-license-mobility-process.md
-        navtitle: License Mobility Deployment Process
+    - navgroup:
+        id: learn
+        topics:
+        - topic: microsoft-getting-started.md
+          navtitle: Overview of Microsoft on IBM
+        - topic: microsoft-byol.md
+          navtitle: Bring Your Own License (BYOL)
+        - topic: microsoft-license-mobility.md
+          navtitle: License Mobility Overview
+        - topic: microsoft-license-mobility-process.md
+          navtitle: License Mobility Deployment Process
 
-  - navgroup:
-      id: howto
-      topics:
-      - topicgroup:
-          label: Microsoft on VPC
-          topics:
-          - link:
-              label: Virtual Private Cloud Solution
-              href: https://www.ibm.com/cloud/vpc
-          - link:
-              label: Virtual Private Cloud Start
-              href: https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started
-          - link:
-              label: BYOL on VPC
-              href: https://cloud.ibm.com/docs/vpc?topic=vpc-byol-vpc-about
-          - link:
-              label: Guest OS Lifecycle on VPC
-              href: https://cloud.ibm.com/docs/vpc?topic=vpc-guest-os-lifecycle
-      - topicgroup:
-          label: Microsoft Images - Day 0
-          topics:
-          - link:
-              label: MSFT ISO Images offered
-              href: /vpc?topic=vpc-about-images
-          - link:
-              label: Lifecycle of MSFT Images VPC
-              href: https://cloud.ibm.com/docs/vpc?topic=vpc-guest-os-lifecycle
-      - topicgroup:
-          label: Microsoft Images - Day 1
-          topics:
-          - link:
-              label: Select a MSFT stock Image
-              href: https://cloud.ibm.com/docs/vpc?topic=vpc-about-images#stock-images
-          - link:
-              label: Select a MSFT custom Image
-              href: https://cloud.ibm.com/docs/vpc?topic=vpc-planning-custom-images
-          - link:
-              label: Creating a MSFT custom Image
-              href: https://cloud.ibm.com/docs/vpc?topic=vpc-create-windows-custom-image
-      - topicgroup:
-          label: Microsoft Images - Day 2
-          topics:
-          - link:
-              label: Patch a Microsoft image - Security and Patches
-              href: https://cloud.ibm.com/docs/vpc?topic=vpc-responsibilities-vpc
-      - topicgroup:
-          label: Microsoft on Classic
-          topics:
-          - link:
-              label: IBM Cloud Bare Metal Severs Solution
-              href: https://www.ibm.com/cloud/bare-metal-servers/classic
-          - link:
-              label: IBM Cloud Bare Metal Servers Docs
-              href: https://cloud.ibm.com/docs/bare-metal?topic=bare-metal-getting-started
-          - link:
-              label: Guest OS Lifecycle for Bare Metal
-              href: https://cloud.ibm.com/docs/bare-metal?topic=bare-metal-getting-started
-          - link:
-              label: About Software for Bare Metal
-              href: https://cloud.ibm.com/docs/bare-metal?topic=bare-metal-about-software
+    - navgroup:
+        id: howto
+        topics:
 
-  - navgroup:
-      id: reference
-      topics:
-      - topicgroup:
-          label: Microsoft SQL Server on VPC
-          topics:
-          - 01-about.md
-          - topicgroup:
-              label: Single AZ deployment pattern
-              topics:
-              - 02-single-az.md
-              - 03-bastion.md
-              - 04-ad.md
-              - 05-sql.md
-          - topicgroup:
-              label: Dual AZ deployment pattern
-              topics:
-              - 06-dual-az.md
-              - 07-ad.md
-              - 08-file-share.md
-              - 09-create-cluster.md
-          - topicgroup:
-              label: Dual multi-zone region deployment pattern
-              topics:
-              - 10-dual-mzr.md
-              - 11-ad.md
-              - 12-extend-cluster.md
-              - 13-baseline.md
-              - 14-security-groups.md
-              - 15-testing.md
-              - 16-ops.md
-              - 17-migration.md
-              - 18-configini.md
+        - topicgroup:
+            label: Microsoft on VPC
+            topics:
+            - link:
+                label: Virtual Private Cloud Solution
+                href: https://www.ibm.com/cloud/vpc
+            - link:
+                label: Virtual Private Cloud Start
+                href: https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started
+            - link:
+                label: BYOL on VPC
+                href: https://cloud.ibm.com/docs/vpc?topic=vpc-byol-vpc-about
+            - link:
+                label: Guest OS Lifecycle on VPC
+                href: https://cloud.ibm.com/docs/vpc?topic=vpc-guest-os-lifecycle
 
-  - navgroup:
-      id: help
-      topics:
-      - topicgroup:
-          label: Troubleshooting
-          topics:
-          - topicgroup:
-              label: Troubleshooting MS SQL
-              topics:
-              - ts-ms-sql-verify-open-ports.md
-              - ts-ms-sql-remove-smb-share.md
-              - ts-ms-sql-rename-virtual-servers.md
-              - ts-ms-sql-add-text-to-file.md
-              - ts-ms-sql-use-domain-service-account.md
-              - ts-ms-sql-verify-dnn.md
-              - ts-ms-sql-verify-server-listening.md
-              - ts-ms-sql-windows-server-updates.md
+        - topicgroup:
+            label: Microsoft Images - Day 0
+            topics:
+            - link:
+                label: MSFT ISO Images offered
+                href: /vpc?topic=vpc-about-images
+            - link:
+                label: Lifecycle of MSFT Images VPC
+                href: https://cloud.ibm.com/docs/vpc?topic=vpc-guest-os-lifecycle
+
+        - topicgroup:
+            label: Microsoft Images - Day 1
+            topics:
+            - link:
+                label: Select a MSFT stock Image
+                href: https://cloud.ibm.com/docs/vpc?topic=vpc-about-images#stock-images
+            - link:
+                label: Select a MSFT custom Image
+                href: https://cloud.ibm.com/docs/vpc?topic=vpc-planning-custom-images
+            - link:
+                label: Creating a MSFT custom Image
+                href: https://cloud.ibm.com/docs/vpc?topic=vpc-create-windows-custom-image
+
+        - topicgroup:
+            label: Microsoft Images - Day 2
+            topics:
+            - link:
+                label: Patch a Microsoft image - Security and Patches
+                href: https://cloud.ibm.com/docs/vpc?topic=vpc-responsibilities-vpc
+        
+        - topicgroup:
+            label: Microsoft on Classic
+            topics:
+            - link:
+                label: IBM Cloud Bare Metal Severs Solution
+                href: https://www.ibm.com/cloud/bare-metal-servers/classic
+            - link:
+                label: IBM Cloud Bare Metal Servers Docs
+                href: https://cloud.ibm.com/docs/bare-metal?topic=bare-metal-getting-started
+            - link:
+                label: Guest OS Lifecycle for Bare Metal
+                href: https://cloud.ibm.com/docs/bare-metal?topic=bare-metal-getting-started
+            - link:
+                label: About Software for Bare Metal
+                href: https://cloud.ibm.com/docs/bare-metal?topic=bare-metal-about-software
+
+    - navgroup:
+        id: reference
+        topics:
+        - topicgroup:
+            label: Microsoft SQL Server on VPC
+            topics:
+            - 01-about.md
+            - topicgroup:
+                label: Single AZ deployment pattern
+                topics:
+                - 02-single-az.md
+                - 03-bastion.md
+                - 04-ad.md
+                - 05-sql.md
+            - topicgroup:
+                label: Dual AZ deployment pattern
+                topics:
+                - 06-dual-az.md
+                - 07-ad.md
+                - 08-file-share.md
+                - 09-create-cluster.md
+            - topicgroup:
+                label: Dual multi-zone region deployment pattern
+                topics:
+                - 10-dual-mzr.md
+                - 11-ad.md
+                - 12-extend-cluster.md
+                - 13-baseline.md
+                - 14-security-groups.md
+                - 15-testing.md
+                - 16-ops.md
+                - 17-migration.md
+                - 18-configini.md
+
+    - navgroup:
+        id: help
+        topics:
+        - topicgroup:
+            label: Troubleshooting
+            topics:
+            - topicgroup:
+                label: Troubleshooting MS SQL
+                topics:
+                - ts-ms-sql-verify-open-ports.md
+                - ts-ms-sql-remove-smb-share.md
+                - ts-ms-sql-rename-virtual-servers.md
+                - ts-ms-sql-add-text-to-file.md
+                - ts-ms-sql-use-domain-service-account.md
+                - ts-ms-sql-verify-dnn.md
+                - ts-ms-sql-verify-server-listening.md
+                - ts-ms-sql-windows-server-updates.md
