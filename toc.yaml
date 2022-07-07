@@ -19,7 +19,7 @@ toc:
       id: learn
       topics:
       - topic: microsoft-getting-started.md
-        navtitle: Getting started
+        navtitle: Overview of Microsoft on IBM
       - topic: microsoft-byol.md
         navtitle: Bring Your Own License (BYOL)
       - topic: microsoft-license-mobility.md
@@ -38,40 +38,40 @@ toc:
               href: https://www.ibm.com/cloud/vpc
           - link:
               label: Virtual Private Cloud Start
-              href: /vpc?topic=vpc-getting-started
+              href: https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started
           - link:
               label: BYOL on VPC
-              href: /vpc?topic=vpc-byol-vpc-about
+              href: https://cloud.ibm.com/docs/vpc?topic=vpc-byol-vpc-about
           - link:
               label: Guest OS Lifecycle on VPC
-              href: /vpc?topic=vpc-guest-os-lifecycle
+              href: https://cloud.ibm.com/docs/vpc?topic=vpc-guest-os-lifecycle
       - topicgroup:
           label: Microsoft Images - Day 0
           topics:
           - link:
               label: MSFT ISO Images offered
-              href: /docs/vpc?topic=vpc-about-images
+              href: /vpc?topic=vpc-about-images
           - link:
               label: Lifecycle of MSFT Images VPC
-              href: /docs/vpc?topic=vpc-guest-os-lifecycle
+              href: https://cloud.ibm.com/docs/vpc?topic=vpc-guest-os-lifecycle
       - topicgroup:
           label: Microsoft Images - Day 1
           topics:
           - link:
               label: Select a MSFT stock Image
-              href: /docs/vpc?topic=vpc-about-images#stock-images
+              href: https://cloud.ibm.com/docs/vpc?topic=vpc-about-images#stock-images
           - link:
               label: Select a MSFT custom Image
-              href: /docs/vpc?topic=vpc-planning-custom-images
+              href: https://cloud.ibm.com/docs/vpc?topic=vpc-planning-custom-images
           - link:
               label: Creating a MSFT custom Image
-              href: /docs/vpc?topic=vpc-create-windows-custom-image
+              href: https://cloud.ibm.com/docs/vpc?topic=vpc-create-windows-custom-image
       - topicgroup:
           label: Microsoft Images - Day 2
           topics:
           - link:
               label: Patch a Microsoft image - Security and Patches
-              href: /docs/vpc?topic=vpc-responsibilities-vpc
+              href: https://cloud.ibm.com/docs/vpc?topic=vpc-responsibilities-vpc
       - topicgroup:
           label: Microsoft on Classic
           topics:
@@ -80,13 +80,13 @@ toc:
               href: https://www.ibm.com/cloud/bare-metal-servers/classic
           - link:
               label: IBM Cloud Bare Metal Servers Docs
-              href: /docs/bare-metal?topic=bare-metal-getting-started
+              href: https://cloud.ibm.com/docs/bare-metal?topic=bare-metal-getting-started
           - link:
               label: Guest OS Lifecycle for Bare Metal
-              href: /docs/bare-metal?topic=bare-metal-getting-started
+              href: https://cloud.ibm.com/docs/bare-metal?topic=bare-metal-getting-started
           - link:
               label: About Software for Bare Metal
-              href: /docs/bare-metal?topic=bare-metal-about-software
+              href: https://cloud.ibm.com/docs/bare-metal?topic=bare-metal-about-software
 
   - navgroup:
       id: reference
