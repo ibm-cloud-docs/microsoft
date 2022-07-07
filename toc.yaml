@@ -21,10 +21,11 @@ toc:
       - topic: microsoft-getting-started.md
         navtitle: Getting started
       - topic: microsoft-byol.md
-        navtitle: Microsoft Bring Your Own License
+        navtitle: Bring Your Own License (BYOL)
       - topic: microsoft-license-mobility.md
-        navtitle: Microsoft License Mobility
+        navtitle: License Mobility Overview
       - topic: microsoft-license-mobility-process.md
+        navtitle: License Mobility Deployment Process
 
   - navgroup:
       id: howto
