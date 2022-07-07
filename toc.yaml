@@ -31,28 +31,28 @@ toc:
       id: howto
       topics:
       - topicgroup:
-        label: Microsoft on VPC
-        topics:
-        - link:
-            label: Virtual Private Cloud Solution
-            href: https://www.ibm.com/cloud/vpc
-        - link:
-            label: Virtual Private Cloud Start
-            href: /vpc?topic=vpc-getting-started
-        - link:
-            label: BYOL on VPC
-            href: /vpc?topic=vpc-byol-vpc-about
-        - link:
-            label: Guest OS Lifecycle on VPC
-            href: /vpc?topic=vpc-guest-os-lifecycle
+          label: Microsoft on VPC
+          topics:
+          - link:
+              label: Virtual Private Cloud Solution
+              href: https://www.ibm.com/cloud/vpc
+          - link:
+              label: Virtual Private Cloud Start
+              href: /vpc?topic=vpc-getting-started
+          - link:
+              label: BYOL on VPC
+              href: /vpc?topic=vpc-byol-vpc-about
+          - link:
+              label: Guest OS Lifecycle on VPC
+              href: /vpc?topic=vpc-guest-os-lifecycle
       - topicgroup:
-        label: Microsoft Images - Day 0
+          label: Microsoft Images - Day 0
       - topicgroup:
-        label: Microsoft Images - Day 1
+          label: Microsoft Images - Day 1
       - topicgroup:
-        label: Microsoft Images - Day 2
+          label: Microsoft Images - Day 2
       - topicgroup:
-        label: Microsoft on Classic
+          label: Microsoft on Classic
 
   - navgroup:
       id: reference
