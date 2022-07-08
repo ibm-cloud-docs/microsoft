@@ -67,7 +67,7 @@ A virtual server of the following specification is suitable for a bastion host a
 
 After the virtual server has been deployed you need to connect a Floating IP address to it so that you can access the server remotely, refer to [Adding a floating IP address](/docs/vpc?topic=vpc-using-instance-vnics#adding-floating-ip).
 
-Refer to [Connecting to Windows instances](/docs/vpc?topic=vpc-vsi_is_connecting_windows) to access the Windows Administrator's password, however, in short the following commands are used from your laptop, where the instances command returns the <INSTANCE_ID> of the virtual server:
+Refer to [Connecting to Windows instances](/docs/vpc?topic=vpc-vsi_is_connecting_windows) to access the Windows Administrator's password, however, in short the following commands are used from your laptop, where the instances command returns the `<INSTANCE_ID>` of the virtual server:
 
 ```
 ibmcloud is instances
@@ -147,7 +147,7 @@ If you want to install the module on the SQL server, which is not Internet conne
 The following PowerShell commands are used to accomplish the following:
 
 * Check to see the status of the SMB2, typically this protocol is disabled in the virtual server image. If disabled it can be enabled, as it is required for SMB to operate.
-* A local user <smbuser> is created to access the share remotely. Insert your required password at <password>.
+* A local user `<smbuser>` is created to access the share remotely. Insert your required password at `<password>`.
 * Share the C:\Users\Administrator\Downloads directory is shared.
 
    ```
@@ -181,7 +181,7 @@ This task should not be started until after the AD server has been installed.
 At a PowerShell prompt on the bastion host, enter the following commands that enable the server to join the domain:
 
 * The `Get-DnsClientServerAddress` captures the Interface Index for the IPv4 Ethernet interface, so that the DNS can be changed from the IBM Cloud DNS server to the ADDNS server. The `Add-Computer` command will fail if this step is missed as the server will not be able to locate the domain controller. The `Add-Computer -Server` only accepts FQDN.
-* The `Add-Computer` command adds the server to the domain <domain> using the ADDNS server <ad_server_fqdn> and then restarts the server to make the change effective.
+* The `Add-Computer` command adds the server to the domain `<domain>` using the ADDNS server `<ad_server_fqdn>` and then restarts the server to make the change effective.
 
 ```
 $dns = "<ADDNS_IP_Address>"

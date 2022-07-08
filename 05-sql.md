@@ -84,7 +84,7 @@ Under rare maintenance operations, a live migration of the virtual server to a n
 ## Connecting to the server
 {: #mssql-sql-connect}
 
-Refer to [Connecting to Windows instances](/docs/vpc?topic=vpc-vsi_is_connecting_windows) to access the Windows Administrator's password, however, in short the following commands are used from your laptop, where the instances command returns the <INSTANCE_ID> of the virtual server:
+Refer to [Connecting to Windows instances](/docs/vpc?topic=vpc-vsi_is_connecting_windows) to access the Windows Administrator's password, however, in short the following commands are used from your laptop, where the instances command returns the `<INSTANCE_ID>` of the virtual server:
 
 ```
 ibmcloud is instances
@@ -99,7 +99,7 @@ This task should not be started until after the AD server has been installed.
 At a Powershell prompt on the SQL server enter the following commands that enable the server to join the domain:
 
 * The `Get-DnsClientServerAddress` captures the Interface Index for the IPv4 Ethernet interface, so that the DNS can be changed from the IBM Cloud DNS server to the ADDNS server. The `Add-Computer` command will fail if this step is missed as the server will not be able to locate the domain controller. The `Add-Computer -Server` only accepts FQDN.
-* The `Add-Computer` command adds the server to the domain <domain> using the ADDNS server <ad_server_fqdn> and then restarts the server to make the change effective.
+* The `Add-Computer` command adds the server to the domain `<domain>` using the ADDNS server `<ad_server_fqdn>` and then restarts the server to make the change effective.
 
 ```
 $dns = "<ADDNS_IP_Address>"
@@ -120,7 +120,7 @@ Add-Computer -DomainName $domain -Server $adserver -Restart -Credential $credent
 The following PowerShell commands are used to accomplish the following:
 
 * Check to see the status of the SMB2, typically this protocol is disabled in the virtual server image. If disabled it can be enabled using `Set-SmbServerConfiguration` , as it is required for SMB to operate.
-* Connect to the share on <bastion_hostname>\Downloads,as the Z: drive using the user <smbuser> and the password <share_password>
+* Connect to the share on `<bastion_hostname>\Downloads`,as the Z: drive using the user `<smbuser>` and the password `<share_password>`
 
 ```
 $bastion = "<bastion_hostname>"
@@ -163,7 +163,7 @@ Number FriendlyName       SerialNumber                         MediaType   CanPo
 ### Create sqldatapool storage pool
 {: #mssql-sql-configstorage-sqldatapool}
 
-The following PowerShell command can be used to configure the sqldatapool storage pool, replace <SerialNumber> with the serial number for the sqldb01-data volume. This command achieves the following:
+The following PowerShell command can be used to configure the sqldatapool storage pool, replace `<SerialNumber>` with the serial number for the sqldb01-data volume. This command achieves the following:
 
 * Creates a storage pool called sqldatapool.
 * Creates a virtual disk in this pool called sqldata for striping (-ResiliencySettingName simple).
@@ -186,7 +186,7 @@ The -NumberOfColumns matches the number of disks to stripe data across.
 ### Create the sqllogpool storage pool
 {: #mssql-sql-configstorage-sqllogpool}
 
-The following PowerShell command can be used to configure the sqllogpool storage pool, replace <SerialNumber> with the serial number for the sqldb01-log volume. This command achieves the following:
+The following PowerShell command can be used to configure the sqllogpool storage pool, replace `<SerialNumber>` with the serial number for the sqldb01-log volume. This command achieves the following:
 
 * Creates a storage pool called sqllogpool.
 * Creates a virtual disk in this pool called sqllog for striping (-ResiliencySettingName simple).
@@ -201,7 +201,7 @@ New-StoragePool -FriendlyName "sqllogpool" -StorageSubsystemFriendlyName "Window
 ### Initialize instance storage for tempdb
 {: #mssql-sql-configstorage-tempdb}
 
-The drive for tempdb does not use Storage Spaces as instance storage only consists of a single volume. The following PowerShell command can be used to configure the volume, replace <SerialNumber> with the serial number for the instance storage volume. This command achieves the following:
+The drive for tempdb does not use Storage Spaces as instance storage only consists of a single volume. The following PowerShell command can be used to configure the volume, replace `<SerialNumber>` with the serial number for the instance storage volume. This command achieves the following:
 
 * Creates a drive initialized with a GPT partition and assigned a drive letter of F.
 * The drive is formatted with the NTFS filesystem with a block size of 64KB and assigned a label of TEMPDB.
@@ -226,7 +226,7 @@ This documentation assumes that you are using option 3, have created a Configura
 
  `C:\Users\Administrator\Downloads\SQL2019\Extracted\SETUP.exe /ConfigurationFile=C:\Users\Administrator\Downloads\ConfigurationFile.ini /TCPENABLED="1" /SQLSVCPASSWORD="<svc_password>" /AGTSVCPASSWORD="<agt_password>"`
 
-<svc_password> is the password for the domain service account used for SQL Server service and <agt_password> is the password for the domain service account used for SQL Agent.
+<svc_password> is the password for the domain service account used for SQL Server service and `<agt_password>` is the password for the domain service account used for SQL Agent.
 
 By default, SQL Server is installed with TCP protocol disabled and `/TCPENABLED="1"` enables TCP.
 

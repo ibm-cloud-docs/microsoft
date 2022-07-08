@@ -61,7 +61,7 @@ This guide assumes that you:
 
 1. RDP to the first SQL server using a user from the SQL Admins group account and open a PowerShell session.
 2. Run a cluster validation test. Ignore any "one pair of network interfaces" warnings, as this is normal for this deployment.
-3. If there are no errors them create a WSFC cluster with a name of `wsfc01` which includes the two SQL servers <hostname1> and <hostname2>. The `-ManagementPointNetworkType Distributed` option uses the node IP address of the virtual server which means that secondary IP addressing on the interface is not required. This option creates a Distributed Network Name (DNN), which routes traffic to the appropriate clustered resource.
+3. If there are no errors them create a WSFC cluster with a name of `wsfc01` which includes the two SQL servers `<hostname1>` and `<hostname2>`. The `-ManagementPointNetworkType Distributed` option uses the node IP address of the virtual server which means that secondary IP addressing on the interface is not required. This option creates a Distributed Network Name (DNN), which routes traffic to the appropriate clustered resource.
 4. The cluster quorum is then configured for Node and Disk Majority using a file share on fs01, `\\fs01\clusterwitness-wsfc01`
 
    ```
@@ -98,7 +98,7 @@ The database to be replicated must be backed up and restored to the secondary in
 
 1. RDP to the first SQL server using a user from the SQL Admins group account and open a PowerShell session.
 2. To participate in Always On availability groups, a server instance requires its own endpoint, which use TCP port 5022 to send and receive traffic between the server instances hosting availability replicas.
-3. The following PowerShell commands are used to configure these endpoints, `Hadr_endpoint`  on the default SQL instances (DEFAULT) on the SQL servers; `<hostname1>`` and <hostname2>` and enables encryption between the endpoints:
+3. The following PowerShell commands are used to configure these endpoints, `Hadr_endpoint`  on the default SQL instances (DEFAULT) on the SQL servers; `<hostname1>` and `<hostname2>` and enables encryption between the endpoints:
 
    ```
    $sqldb01 = "<hostname1>"
@@ -175,7 +175,7 @@ The new secondary database is in the RESTORING state. Until it is joined to the 
 Databases added to an availability group are known as availability databases. When adding databases, the database must be an online, read-write database and exist on the server instance that will hosts the primary replica in the WSFC. When added, the database joins the availability group as a primary database and remains available to clients. No secondary database exists until backups of the primary database are restored to the server instance that will become the secondary replica. The new secondary database is in the RESTORING state until it is joined to the availability group. Refer to [Use automatic seeding to initialize a secondary replica for an Always On availability group](https://docs.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatic-seeding-secondary-replicas?view=sql-server-ver15){: external} if the backup and restore method is not used.
 
 1. RDP to the first SQL server using a user from the SQL Admins group account and open a PowerShell session.
-2. To ensure that you do not get path errors then use `Invoke-SQLCmd` which forces the loading of the SQL PowerShell library which is then accessible via the PowerShell drive tree. PowerShell treats the objects in SQL Server similar to files in a directory. Replace <hostname1> with the hostname of the SQL server:
+2. To ensure that you do not get path errors then use `Invoke-SQLCmd` which forces the loading of the SQL PowerShell library which is then accessible via the PowerShell drive tree. PowerShell treats the objects in SQL Server similar to files in a directory. Replace `<hostname1>` with the hostname of the SQL server:
 
    ```
    invoke-sqlcmd
