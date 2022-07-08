@@ -4,7 +4,7 @@ copyright:
   years: 2022
 lastupdated: "2022-07-07"
 
-keywords:
+keywords: microsoft, byol, BYOL, license
 
 subcollection: microsoft
 
