@@ -51,7 +51,7 @@ toc:
             topics:
             - link:
                 label: MSFT ISO Images offered
-                href: /vpc?topic=vpc-about-images
+                href: /vpc/vpc-about-images
             - link:
                 label: Lifecycle of MSFT Images VPC
                 href: /vpc/vpc-guest-os-lifecycle
