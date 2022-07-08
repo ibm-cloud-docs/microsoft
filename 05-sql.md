@@ -86,7 +86,7 @@ Under rare maintenance operations, a live migration of the virtual server to a n
 
 Refer to [Connecting to Windows instances](/docs/vpc?topic=vpc-vsi_is_connecting_windows) to access the Windows Administrator's password, however, in short the following commands are used from your laptop, where the instances command returns the `<INSTANCE_ID>` of the virtual server:
 
-```
+```sh
 ibmcloud is instances
 ibmcloud is instance-initialization-values <INSTANCE_ID> --private-key @~/.ssh/id_rsa
 ```
@@ -101,7 +101,7 @@ At a Powershell prompt on the SQL server enter the following commands that enabl
 * The `Get-DnsClientServerAddress` captures the Interface Index for the IPv4 Ethernet interface, so that the DNS can be changed from the IBM Cloud DNS server to the ADDNS server. The `Add-Computer` command will fail if this step is missed as the server will not be able to locate the domain controller. The `Add-Computer -Server` only accepts FQDN.
 * The `Add-Computer` command adds the server to the domain `<domain>` using the ADDNS server `<ad_server_fqdn>` and then restarts the server to make the change effective.
 
-```
+```sh
 $dns = "<ADDNS_IP_Address>"
 $adserver = "<ad_server_fqdn>"
 $domain = "<domain>"
@@ -122,7 +122,7 @@ The following PowerShell commands are used to accomplish the following:
 * Check to see the status of the SMB2, typically this protocol is disabled in the virtual server image. If disabled it can be enabled using `Set-SmbServerConfiguration` , as it is required for SMB to operate.
 * Connect to the share on `<bastion_hostname>\Downloads`,as the Z: drive using the user `<smbuser>` and the password `<share_password>`
 
-```
+```sh
 $bastion = "<bastion_hostname>"
 $user = "<smbuser>"
 $shareuser = $bastion + '\' + $user
@@ -143,14 +143,14 @@ The Microsoft SQL on VPC deployment patterns leverage Microsoft Storage Spaces. 
 
 From the IBM Cloud console, capture the storage volumes information for the SQL server. For example:
 
-```
+```sh
 sqldb01-data: 0787-ff88b86a-1e29-4f0d-8a69-67b4deda3d5c-lpcn2
 sqldb01-log: 0787-1d41b85e-4e8a-499e-b889-13b96db5251c-2w2n2
 ```
 
 The following PowerShell command is used to capture the Windows OS view of the SerialNumber for use in subsequent PowerShell commands; `Get-StoragePool -IsPrimordial $true | Get-PhysicalDisk -CanPool $True`. As can be seen from the following example, the SerialNumbers can be captured:
 
-```
+```sh
 Number FriendlyName       SerialNumber                         MediaType   CanPool OperationalStatus HealthStatus Usage           Size
 ------ ------------       ------------                         ---------   ------- ----------------- ------------ -----           ----
 1      QEMU QEMU HARDDISK cloud-init-0787_1c6e0975-a584-43ca-b Unspecified True    OK                Healthy      Auto-Select   378 KB
@@ -170,14 +170,14 @@ The following PowerShell command can be used to configure the sqldatapool storag
 * The virtual disk is initialized with a GPT partition and assigned a drive letter of D.
 * The virtual disk is formatted with the NTFS filesystem with a block size of 64KB and assigned a label of SQLDATA.
 
-```
+```sh
 $dataserial = "<SerialNumber>"
 New-StoragePool -FriendlyName "sqldatapool" -StorageSubsystemFriendlyName "Windows Storage*" -PhysicalDisks (Get-PhysicalDisk -SerialNumber $dataserial) | New-VirtualDisk -FriendlyName "sqldata" -Interleave 65536 -NumberOfColumns 1 -ResiliencySettingName simple –UseMaximumSize | Initialize-Disk -PartitionStyle GPT -PassThru | New-Partition -DriveLetter "D" -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel "SQLDATA" -AllocationUnitSize 65536 -Confirm:$false -UseLargeFRS
 ```
 
 If you are using multiple data volumes for increased performance, then this PowerShell command must be modified. An example for 2 disks:
 
-```
+```sh
 New-StoragePool -FriendlyName "sqldatapool" -StorageSubsystemFriendlyName "Windows Storage*" -PhysicalDisks (Get-PhysicalDisk | where {($_.SerialNumber -eq "<Disk1_SerialNumber>") -or ($_.SerialNumber -eq "<Disk2_SerialNumber>")}) | New-VirtualDisk -FriendlyName "sqldata" -Interleave 65536 -NumberOfColumns 2 -ResiliencySettingName simple –UseMaximumSize | Initialize-Disk -PartitionStyle GPT -PassThru | New-Partition -DriveLetter "D" -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel "SQLDATA" -AllocationUnitSize 65536 -Confirm:$false -UseLargeFRS
 ```
 
@@ -193,7 +193,7 @@ The following PowerShell command can be used to configure the sqllogpool storage
 * The virtual disk is initialized with a GPT partition and assigned a drive letter of E.
 * The virtual disk is formatted with the NTFS filesystem with a block size of 64KB and assigned a label of SQLLOG.
 
-```
+```sh
 $logserial = "<SerialNumber>"
 New-StoragePool -FriendlyName "sqllogpool" -StorageSubsystemFriendlyName "Windows Storage*" -PhysicalDisks (Get-PhysicalDisk -SerialNumber $logserial) | New-VirtualDisk -FriendlyName "sqllog" -Interleave 65536 -NumberOfColumns 1 -ResiliencySettingName simple –UseMaximumSize | Initialize-Disk -PartitionStyle GPT -PassThru | New-Partition -DriveLetter "E" -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel "SQLLOG" -AllocationUnitSize 65536 -Confirm:$false -UseLargeFRS
 ```
@@ -206,7 +206,7 @@ The drive for tempdb does not use Storage Spaces as instance storage only consis
 * Creates a drive initialized with a GPT partition and assigned a drive letter of F.
 * The drive is formatted with the NTFS filesystem with a block size of 64KB and assigned a label of TEMPDB.
 
-```
+```sh
 $tempdbserial = "<SerialNumber>"
 Get-Disk | Where SerialNumber -eq $tempdbserial | Initialize-Disk -PartitionStyle GPT -PassThru | New-Partition -DriveLetter "F" -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel "TEMPDB" -AllocationUnitSize 65536 -Confirm:$false -UseLargeFRS
 ```
@@ -256,7 +256,7 @@ Use the following command to allow TCP 5022 through the Windows firewall if you 
 
 To synchronize time automatically from the AD domain hierarchy, run the following commands:
 
-```
+```sh
 w32tm /config /syncfromflags:domhier /update
 net stop w32time
 net start w32time
@@ -269,7 +269,7 @@ w32tm /query /status
 As the SQL server is not Internet connected, the module will need to be downloaded to the bastion host copied across to SQL server's C:\Program
 Files\WindowsPowerShell\Modules directory and then installed. The following PowerShell commands assume you have downloaded the module to the bastion host and configured a share connected to the Z: drive
 
-```
+```sh
 Copy-Item "Z:\SqlServer" -Destination "C:\Program Files\WindowsPowerShell\Modules" -Recurse
 Import-Module SQLServer
 ```

@@ -64,7 +64,7 @@ After the virtual server has been deployed you need to connect a Floating IP add
 
 Refer to [Connecting to Windows instances](/docs/vpc?topic=vpc-vsi_is_connecting_windows) to access the Windows Administrator's password, however, in short the following commands are used from your laptop, where the instances command returns the `<INSTANCE_ID>` of the virtual server:
 
-```
+```sh
 ibmcloud is instances
 ibmcloud is instance-initialization-values <INSTANCE_ID> --private-key @~/.ssh/id_rsa
 ```
@@ -79,7 +79,7 @@ At a PowerShell prompt on the bastion host enter the following commands that ena
 * The `Get-DnsClientServerAddress` captures the Interface Index for the IPv4 Ethernet interface, so that the DNS can be changed from the IBM Cloud DNS server to the ADDNS server. The `Add-Computer` command will fail if this step is missed as the server will not be able to locate the domain controller. The `Add-Computer -Server` only accepts FQDN.
 * The `Add-Computer` command adds the server to the domain `<domain>` using the ADDNS server `<ad_server_fqdn>` and then restarts the server to make the change effective.
 
-```
+```sh
 $dns = "<ADDNS_IP_Address>"
 $adserver = "<ad_server_fqdn>"
 $domain = "<domain>"
@@ -102,7 +102,7 @@ The following PowerShell commands are used to accomplish the following:
 
 Note that machine accounts are suffixed with `$` e.g.
 
-```
+```sh
 $domainnb = "<NB_Domain>"
 $clustername = "<cluster_name>"
 $machineaccount = $domainnb + "\" +$clustername + "$"

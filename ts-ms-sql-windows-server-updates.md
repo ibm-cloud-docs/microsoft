@@ -28,7 +28,7 @@ subcollection: microsoft
 
 The following PowerShell commands can be used to enable Windows Server updates to be managed by PowerShell commands:
 
-```
+```sh
 Get-PackageProvider -Name nuget -Force
 Install-Module PSWindowsUpdate -confirm:$false -Force
 Get-WindowsUpdate -Install -acceptall -IgnoreReboot

@@ -28,7 +28,7 @@ subcollection: microsoft
 
 Use the `Get-NetTCPConnection` to see current TCP connections. The following example run in a PowerShell session on a SQL server to see what is connecting to the SQL TCP port 1433
 
-```
+```sh
  Get-NetTCPConnection | Where-Object LocalPort -eq 1433
 
 LocalAddress                        LocalPort RemoteAddress                       RemotePort State       AppliedSetting

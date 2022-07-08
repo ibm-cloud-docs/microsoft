@@ -28,6 +28,6 @@ subcollection: microsoft
 
 Use the PowerShell command `Add-Content` to add text to a file. The following example adds an entry into the hosts file for a server `srv01`. The ```r`n``` creates a new line:
 
-```
+```sh
 Add-Content -Path C:\Windows\System32\Drivers\Etc\hosts -Value "`r`n10.10.0.68    srv01"
 ```

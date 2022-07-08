@@ -63,7 +63,7 @@ The following parameters were added or modified in the ConfigurationFile.ini:
 
 The ConfigurationFile.ini file used in the deployment patterns is shown. The following commands can be pasted into the `ConfigurationFile.ini` file on the SQL server and used for the quiet install of SQL Server. The following commands should be reviewed for applicability in your environment.
 
-```
+```sh
 ;SQL Server 2019 Configuration File
 [OPTIONS]
 
