@@ -39,7 +39,7 @@ toc:
                 href: https://www.ibm.com/cloud/vpc
             - link:
                 label: Virtual Private Cloud Start
-                href: https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started
+                href: /docs/vpc?topic=vpc-getting-started
             - link:
                 label: BYOL on VPC
                 href: https://cloud.ibm.com/docs/vpc?topic=vpc-byol-vpc-about
