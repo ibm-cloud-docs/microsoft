@@ -8,17 +8,16 @@ toc:
     service-name: microsoft
     category: compute
     audience: solution
-    href: /docs/microsoft?topic=microsoft-get-started
+    href: /docs/microsoft?topic=microsoft-overview
     product-page: https://cloud.ibm.com/
     path: microsoft
-    label: Microsoft
-    
- #  List your getting started tutorial (getting-started.md) as the first item in the Get started nav group. See https://test.cloud.ibm.com/docs/writing?topic=writing-navigation for more details on the toc design.
+    label: Microsoft Software on IBM Cloud
+
   entries:
     - navgroup:
         id: learn
         topics:
-        - topic: microsoft-getting-started.md
+        - topic: microsoft-overview.md
           navtitle: Overview of Microsoft on IBM
         - topic: microsoft-byol.md
           navtitle: Bring Your Own License (BYOL)
@@ -40,13 +39,12 @@ toc:
             - link:
                 label: Virtual Private Cloud Start
                 href: /vpc/vpc-getting-started
-                #href: https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started
             - link:
                 label: BYOL on VPC
-                href: https://cloud.ibm.com/docs/vpc?topic=vpc-byol-vpc-about
+                href: /vpc/vpc-byol-vpc-about
             - link:
                 label: Guest OS Lifecycle on VPC
-                href: https://cloud.ibm.com/docs/vpc?topic=vpc-guest-os-lifecycle
+                href: /vpc/vpc-guest-os-lifecycle
 
         - topicgroup:
             label: Microsoft Images - Day 0
@@ -56,27 +54,27 @@ toc:
                 href: /vpc?topic=vpc-about-images
             - link:
                 label: Lifecycle of MSFT Images VPC
-                href: https://cloud.ibm.com/docs/vpc?topic=vpc-guest-os-lifecycle
+                href: /vpc/vpc-guest-os-lifecycle
 
         - topicgroup:
             label: Microsoft Images - Day 1
             topics:
             - link:
                 label: Select a MSFT stock Image
-                href: https://cloud.ibm.com/docs/vpc?topic=vpc-about-images#stock-images
+                href: /vpc/vpc-about-images#stock-images
             - link:
                 label: Select a MSFT custom Image
-                href: https://cloud.ibm.com/docs/vpc?topic=vpc-planning-custom-images
+                href: /vpc/vpc-planning-custom-images
             - link:
                 label: Creating a MSFT custom Image
-                href: https://cloud.ibm.com/docs/vpc?topic=vpc-create-windows-custom-image
+                href: /vpc/vpc-create-windows-custom-image
 
         - topicgroup:
             label: Microsoft Images - Day 2
             topics:
             - link:
                 label: Patch a Microsoft image - Security and Patches
-                href: https://cloud.ibm.com/docs/vpc?topic=vpc-responsibilities-vpc
+                href: /vpc/vpc-responsibilities-vpc
         
         - topicgroup:
             label: Microsoft on Classic
@@ -86,13 +84,13 @@ toc:
                 href: https://www.ibm.com/cloud/bare-metal-servers/classic
             - link:
                 label: IBM Cloud Bare Metal Servers Docs
-                href: https://cloud.ibm.com/docs/bare-metal?topic=bare-metal-getting-started
+                href: /bare-metal/bare-metal-getting-started
             - link:
                 label: Guest OS Lifecycle for Bare Metal
-                href: https://cloud.ibm.com/docs/bare-metal?topic=bare-metal-getting-started
+                href: /bare-metal/bare-metal-getting-started
             - link:
                 label: About Software for Bare Metal
-                href: https://cloud.ibm.com/docs/bare-metal?topic=bare-metal-about-software
+                href: /bare-metal/bare-metal-about-software
 
         - topicgroup:
             label: Microsoft SQL Server on VPC
@@ -139,5 +137,5 @@ toc:
     - navgroup:
         id: help
         topics:
-        - topic: microsoft-help-support
+        - topic: microsoft-help-support.md
           navtitle: Getting Help and Support from IBM Cloud or Microsoft
