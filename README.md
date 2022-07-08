@@ -5,6 +5,7 @@ Documentation repository for Microsoft on IBM Cloud
 * Test https://test.cloud.ibm.com/docs/microsoft
 * Production https://cloud.ibm.com/docs/microsoft
 * Public repo (read-only) https://github.com/ibm-cloud-docs/microsoft
+* [#docs-microsoft](https://ibm-cloudplatform.slack.com/archives/C01TQD8PEAG) builds ➡️ [#docs-indexer](https://ibm-cloudplatform.slack.com/archives/CE5376ESJ) builds
 
 ## Contacts
 
