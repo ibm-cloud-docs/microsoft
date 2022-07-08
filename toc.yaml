@@ -39,7 +39,8 @@ toc:
                 href: https://www.ibm.com/cloud/vpc
             - link:
                 label: Virtual Private Cloud Start
-                href: /docs/vpc?topic=vpc-getting-started
+                href: /vpc/vpc-getting-started
+                #href: https://cloud.ibm.com/docs/vpc?topic=vpc-getting-started
             - link:
                 label: BYOL on VPC
                 href: https://cloud.ibm.com/docs/vpc?topic=vpc-byol-vpc-about
@@ -93,9 +94,6 @@ toc:
                 label: About Software for Bare Metal
                 href: https://cloud.ibm.com/docs/bare-metal?topic=bare-metal-about-software
 
-    - navgroup:
-        id: reference
-        topics:
         - topicgroup:
             label: Microsoft SQL Server on VPC
             topics:
@@ -126,13 +124,6 @@ toc:
                 - 16-ops.md
                 - 17-migration.md
                 - 18-configini.md
-
-    - navgroup:
-        id: help
-        topics:
-        - topicgroup:
-            label: Troubleshooting
-            topics:
             - topicgroup:
                 label: Troubleshooting MS SQL
                 topics:
@@ -144,3 +135,9 @@ toc:
                 - ts-ms-sql-verify-dnn.md
                 - ts-ms-sql-verify-server-listening.md
                 - ts-ms-sql-windows-server-updates.md
+
+    - navgroup:
+        id: help
+        topics:
+        - topic: microsoft-help-support
+          navtitle: Getting Help and Support from IBM Cloud or Microsoft
