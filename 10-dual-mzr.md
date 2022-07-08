@@ -43,8 +43,8 @@ The dual MZR deployment pattern shown leverages the dual Availability Zone (AZ) 
 * Three Windows Server 2019 Standard virtual servers, one in each AZ in the primary MZR and a third in the recovery MZR, that are Active Directory domain controllers in the same forest\domain.
 * Three Windows Server 2019 Standard virtual servers, one in each AZ in the primary MZR and a third in the recovery MZR, that will become Windows Server Failover Cluster (WSFC) nodes.
 * Always On availability groups provide the ability to keep a discrete set of databases highly available across one or more cluster nodes and work at the database level. Availability groups consist of one primary replica and up to a maximum of eight secondary replicas, and use synchronous or asynchronous data replication. In this deployment:
-  * synchronous replication ios used between the two AZs in the primary MZR.
-  * asynchronous replication is used between the MZRs.
+   * synchronous replication ios used between the two AZs in the primary MZR.
+   * asynchronous replication is used between the MZRs.
 * Distributed Network Names is a name resource in WSFC and Always On availability groups, used for name resolution of the cluster resources.
 
 A file share witness is not required in this deployment because there are an odd number of nodes and Node Majority quorum mode will be used

@@ -53,9 +53,9 @@ The traffic flows are as follows, as security groups are stateful, only the init
 * ICMP traffic between internal resources.
 * DNS traffic on UDP 53 to the AD servers.
 * IBM Cloud endpoints traffic:
-  * DNS resolver traffic on UDP 53 to the IBM DNS resolvers 161.26.0.10 and 161.26.0.11.
-  * DNS traffic on UDP 53 to the AD servers.
-  * NTP traffic on UDP 123 to the IBM NTP server at 161.26.0.6.
+   * DNS resolver traffic on UDP 53 to the IBM DNS resolvers 161.26.0.10 and 161.26.0.11.
+   * DNS traffic on UDP 53 to the AD servers.
+   * NTP traffic on UDP 123 to the IBM NTP server at 161.26.0.6.
 
 ## RDP traffic from the Internet
 {: #mssql-securitygroups-rdp1}

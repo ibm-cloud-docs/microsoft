@@ -58,10 +58,10 @@ A flow log is a summary of the network traffic between two virtual network inter
 
 * Collection - Flow log collectors are configured to collect flow data and the the collectors can be configured with different scopes:
 
-  * VPC - Collects data for all network interfaces on a specific VPC.
-  * Subnet - Collects data for all network interfaces on a specific subnet.
-  * Instance - Collects data for all network interfaces on a specific virtual server.
-  * Interface - Collects data for a specific network interface on a specific virtual server.
+   * VPC - Collects data for all network interfaces on a specific VPC.
+   * Subnet - Collects data for all network interfaces on a specific subnet.
+   * Instance - Collects data for all network interfaces on a specific virtual server.
+   * Interface - Collects data for a specific network interface on a specific virtual server.
 
 * Storage - Flow logs are stored in an IBM Cloud Object Storage (COS) bucket. This bucket is configured during the setup of the flow log collector.
 * Presentation - IBM Cloud SQL Query is IBM's serverless SQL service on data on COS, and is used to create queries on the flow logs stored in COS. Refer to [Viewing flow log objects](/docs/vpc?topic=vpc-fl-analyze) and [Using IBM Cloud SQL Query](https://dataplatform.cloud.ibm.com/exchange/public/entry/view/4a9bb1c816fb1e0f31fec5d580e4e14d) for further information.
@@ -90,9 +90,9 @@ Backup and restore on SQL Server can be categorized as either native or third pa
 
 * Native - For more information, see [Quickstart: Backup and restore a SQL Server database](https://docs.microsoft.com/en-us/sql/relational-databases/backup-restore/quickstart-backup-restore-database?view=sql-server-ver15){: external} which describes the process of creating a full database backup and restoring a backup using SQL Server Management Studio (SSMS). The backup is stored in the backup location configured during the SQL Server install or a user defined location, such as a file share. Backups can be scheduled by using a SQL Server Agent job. For a full description of SQL Server concepts, see [Backup Overview (SQL Server)](https://docs.microsoft.com/en-us/sql/relational-databases/backup-restore/backup-overview-sql-server?view=sql-server-ver15){: external}.
 * Third party integration - There are a number of third party integrations available and here we describe just three; IBM Spectrum Protect, Veeam and IBM Spectrum Protect Plus:
-  * IBM Spectrum Protect - Data Protection for SQL allows you to perform online backups and restores of Microsoft SQL Server databases to an IBM Spectrum Protect Storage Manager Server. For a description of implementing IBM Spectrum Protect Storage Manager Server, see [IBM Spectrum Protect Cloud Blueprints](https://www.ibm.com/support/pages/ibm-spectrum-protect-cloud-blueprints){: external}. Installation of Data Protection for SQL is covered at [Download Information: Version 8.1.9 IBM Spectrum Protect for Databases](https://www.ibm.com/support/pages/node/1071626){: external}.
-  * Veeam - Veeam Agent for Microsoft Windows is a data protection and disaster recovery solution that can be deployed on IBM Cloud VPC virtual server instances. For more information, see [Using Veeam Agent](/docs/vpc?topic=vpc-using-veeam-agent). It is also possible to use Veeam Agent for Microsoft Windows with Veeam Backup and Replication, where Veeam Backup and Replication provides a centralized backup solution for all your Veaam Agents. For more information, see [Using Veeam Backup and Replication software](/docs/vpc?topic=vpc-using-veeam-backup-replication-software). For more information on backing up SQL Server, see [Back Up Microsoft SQL Server](https://helpcenter.veeam.com/docs/agentforwindows/userguide/howto_sql_backup.html?ver=50){: external}
-  * IBM Spectrum Protect Plus - IBM Spectrum Protect Plus is a data protection solution for virtual environments, vSphere or Hyper-V, and provides application data protection for many applications, included SQL Server, hosted on IBM Cloud VPC virtual servers. IBM Spectrum Protect Plus can be implemented as a standalone solution or can integrate with your IBM Spectrum Protect environment to offload copies for long-term storage and governance. IBM Spectrum Protect Plus can be installed automatically in IBM Cloud to an existing VMware environment, see [Spectrum Protect Plus Server](https://cloud.ibm.com/catalog/content/SPPserver-c7e2d4f2-35c4-44ca-8b43-6ff0d4a12aff-global#about) for more information. For specific information on IBM Spectrum Protect Plus and SQL Server, see [Backing up and restoring SQL Server data](https://www.ibm.com/docs/en/spp/10.1.8?topic=databases-sql-server){: external}.
+   * IBM Spectrum Protect - Data Protection for SQL allows you to perform online backups and restores of Microsoft SQL Server databases to an IBM Spectrum Protect Storage Manager Server. For a description of implementing IBM Spectrum Protect Storage Manager Server, see [IBM Spectrum Protect Cloud Blueprints](https://www.ibm.com/support/pages/ibm-spectrum-protect-cloud-blueprints){: external}. Installation of Data Protection for SQL is covered at [Download Information: Version 8.1.9 IBM Spectrum Protect for Databases](https://www.ibm.com/support/pages/node/1071626){: external}.
+   * Veeam - Veeam Agent for Microsoft Windows is a data protection and disaster recovery solution that can be deployed on IBM Cloud VPC virtual server instances. For more information, see [Using Veeam Agent](/docs/vpc?topic=vpc-using-veeam-agent). It is also possible to use Veeam Agent for Microsoft Windows with Veeam Backup and Replication, where Veeam Backup and Replication provides a centralized backup solution for all your Veaam Agents. For more information, see [Using Veeam Backup and Replication software](/docs/vpc?topic=vpc-using-veeam-backup-replication-software). For more information on backing up SQL Server, see [Back Up Microsoft SQL Server](https://helpcenter.veeam.com/docs/agentforwindows/userguide/howto_sql_backup.html?ver=50){: external}
+   * IBM Spectrum Protect Plus - IBM Spectrum Protect Plus is a data protection solution for virtual environments, vSphere or Hyper-V, and provides application data protection for many applications, included SQL Server, hosted on IBM Cloud VPC virtual servers. IBM Spectrum Protect Plus can be implemented as a standalone solution or can integrate with your IBM Spectrum Protect environment to offload copies for long-term storage and governance. IBM Spectrum Protect Plus can be installed automatically in IBM Cloud to an existing VMware environment, see [Spectrum Protect Plus Server](https://cloud.ibm.com/catalog/content/SPPserver-c7e2d4f2-35c4-44ca-8b43-6ff0d4a12aff-global#about) for more information. For specific information on IBM Spectrum Protect Plus and SQL Server, see [Backing up and restoring SQL Server data](https://www.ibm.com/docs/en/spp/10.1.8?topic=databases-sql-server){: external}.
 
 ## IBM Cloud Security and Compliance Center
 {: #mssql-ops-scc}
@@ -158,48 +158,48 @@ Microsoft releases Cumulative packs (CU) for SQL server every 2 months. Every CU
 The following is a short summary of the patching process in an Always On availability group:
 
 * Preparation:
-  * Determine the current patch level.
-  * Define the target patch level i.e N or N-1.
-  * Read the patch release notes.
-  * Best practice is to test the patch in a test environment before patching a production environment.
-  * Verify that you have the latest backups for the system databases and user databases in the primary replica. Ideally you will have full backups; however, for very large databases, either a differential backup or the transaction log backup must be available
-  * On the secondary replicas, have the latest system database backup available.
-  * Verify the availability group health using the availability dashboard in SQL Server Management Studio. The availability group databases should be in the Synchronized state for the synchronous commit and Synchronizing state for the asynchronous commit mode.
+   * Determine the current patch level.
+   * Define the target patch level i.e N or N-1.
+   * Read the patch release notes.
+   * Best practice is to test the patch in a test environment before patching a production environment.
+   * Verify that you have the latest backups for the system databases and user databases in the primary replica. Ideally you will have full backups; however, for very large databases, either a differential backup or the transaction log backup must be available
+   * On the secondary replicas, have the latest system database backup available.
+   * Verify the availability group health using the availability dashboard in SQL Server Management Studio. The availability group databases should be in the Synchronized state for the synchronous commit and Synchronizing state for the asynchronous commit mode.
 * Patching:
-  * Apply the patch to the secondary replica in the primary MZR i.e. the SQL server in AZ2, if applicable:
-    * Using SSMS, change the failover mode from Automatic to Manual to ensures that no automatic failover happens while the patches are installed.
-    * Using SSMS, suspend data movement for the secondary replica databases so that the primary replica does not send any transaction block to the specific secondary replica.
-    * Via RDP to the server hosting the  secondary replica, apply the CU.
-    * Restart the server.
-    * Once the secondary replica comes online, connect to it using SSMS and perform the following validation:
-      * Verify SQL Services are online.
-      * SQL Server version validation.
-      * Review SQL Server error logs for any errors, warnings.
-      * It is also recommended to perform a database consistency checker (DBCC CHECKDB) after applying the patches.
-    * Using SSMS, resume data movement to the secondary replica database and wait for the availability group dashboard to show healthy.
-  * Apply the patch to the secondary replica in the recovery MZR, if applicable:
-    * Using SSMS, suspend data movement for the secondary replica databases so that the primary replica does not send any transaction block to the specific secondary replica.
-    * Via RDP to the server hosting the  secondary replica, apply the CU.
-    * Restart the server.
-    * Once the secondary replica comes online, connect to it using SSMS and perform the following validation:
-      * Verify SQL Services are online.
-      * SQL Server version validation.
-      * Review SQL Server error logs for any errors, warnings.
-      * It is also recommended to perform a database consistency checker (DBCC CHECKDB) after applying the patches.
-    * Using SSMS, resume data movement to the secondary replica database and wait for the availability group dashboard to show healthy.
-  * Apply the patch to the primary replica:
-    * Using SSMS, perform a manual failover from the primary replica to the secondary replica in the primary MZR. After the failover, the  primary replica changes its state to a secondary replica.
-    * Using SSMS, suspend data movement for the secondary replica databases so that the primary replica does not send any transaction block to the specific secondary replica.
-    * Via RDP to the server hosting the  secondary replica, apply the CU.
-    * Restart the server.
-    * Once the secondary replica comes online, connect to it using SSMS and perform the following validation:
-      * Verify SQL Services are online.
-      * SQL Server version validation.
-      * Review SQL Server error logs for any errors, warnings.
-      * It is also recommended to perform a database consistency checker (DBCC CHECKDB) after applying the patches.
-      * Using SSMS, perform an availability failback. After the failover, the availability group primary replica is the primary node.
-      * Change the failover mode to automatic for the primary and secondary replicas configured with synchronous data commit mode.
+   * Apply the patch to the secondary replica in the primary MZR i.e. the SQL server in AZ2, if applicable:
+      * Using SSMS, change the failover mode from Automatic to Manual to ensures that no automatic failover happens while the patches are installed.
+      * Using SSMS, suspend data movement for the secondary replica databases so that the primary replica does not send any transaction block to the specific secondary replica.
+      * Via RDP to the server hosting the  secondary replica, apply the CU.
+      * Restart the server.
+      * Once the secondary replica comes online, connect to it using SSMS and perform the following validation:
+         * Verify SQL Services are online.
+         * SQL Server version validation.
+         * Review SQL Server error logs for any errors, warnings.
+         * It is also recommended to perform a database consistency checker (DBCC CHECKDB) after applying the patches.
+      * Using SSMS, resume data movement to the secondary replica database and wait for the availability group dashboard to show healthy.
+   * Apply the patch to the secondary replica in the recovery MZR, if applicable:
+      * Using SSMS, suspend data movement for the secondary replica databases so that the primary replica does not send any transaction block to the specific secondary replica.
+      * Via RDP to the server hosting the  secondary replica, apply the CU.
+      * Restart the server.
+      * Once the secondary replica comes online, connect to it using SSMS and perform the following validation:
+         * Verify SQL Services are online.
+         * SQL Server version validation.
+         * Review SQL Server error logs for any errors, warnings.
+         * It is also recommended to perform a database consistency checker (DBCC CHECKDB) after applying the patches.
+      * Using SSMS, resume data movement to the secondary replica database and wait for the availability group dashboard to show healthy.
+   * Apply the patch to the primary replica:
+      * Using SSMS, perform a manual failover from the primary replica to the secondary replica in the primary MZR. After the failover, the  primary replica changes its state to a secondary replica.
+      * Using SSMS, suspend data movement for the secondary replica databases so that the primary replica does not send any transaction block to the specific secondary replica.
+      * Via RDP to the server hosting the  secondary replica, apply the CU.
+      * Restart the server.
+      * Once the secondary replica comes online, connect to it using SSMS and perform the following validation:
+         * Verify SQL Services are online.
+         * SQL Server version validation.
+         * Review SQL Server error logs for any errors, warnings.
+         * It is also recommended to perform a database consistency checker (DBCC CHECKDB) after applying the patches.
+         * Using SSMS, perform an availability failback. After the failover, the availability group primary replica is the primary node.
+         * Change the failover mode to automatic for the primary and secondary replicas configured with synchronous data commit mode.
 * Post-patching:
-  * Using SSMS, perform an availability group failover and failback and validate that the SSMS availability dashboard is healthy.
-  * Review the error logs on all replicas.
-  * Validate application access.
+   * Using SSMS, perform an availability group failover and failback and validate that the SSMS availability dashboard is healthy.
+   * Review the error logs on all replicas.
+   * Validate application access.

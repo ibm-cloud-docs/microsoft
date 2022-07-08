@@ -44,8 +44,8 @@ A virtual server of the following specification was selected for the SQL server 
 * **NIC Qty:** 1
 * **Instance Storage:** 150GB
 * **Data Volumes:**
-  * **sqldb01-data:** 1024 GB, Tiered-5IOPS/GB, Provider Managed Encryption
-  * **sqldb01-log:** 1024 GB, Tiered-5IOPS/GB, Provider Managed Encryption
+   * **sqldb01-data:** 1024 GB, Tiered-5IOPS/GB, Provider Managed Encryption
+   * **sqldb01-log:** 1024 GB, Tiered-5IOPS/GB, Provider Managed Encryption
 
 ### Compute
 {: #mssql-sql-order-compute}
@@ -70,11 +70,11 @@ When planning your SQL Server on IBM Cloud VPC, there are three storage componen
 * Boot volumes - When virtual server is created, a 100 GB, 3 IOPS/GB boot volume is created from block storage and attached to the instance. By default, boot volumes are encrypted by IBM-managed encryption, however, customer-managed encryption is an option. Boot volumes can not be detached, deleted or increased or reduced in size. Boot volumes are always deleted when the virtual server is deleted. Boot volumes contain the operating system files.
 * Data volumes - Data volumes leverage block storage for VPC and provides hypervisor-mounted, high-performance data storage that is stored redundantly across multiple physical disks in an Availability Zone (AZ) to prevent data loss due to failure of any single component. Data volumes range from 10 GB to 2000 GB and maximum IOPS varies based on volume size and the IOPS tier profile selected. For example, the max IOPS for a 5 IOPS/GB volume of 2000 GB is 10,000 IOPS. You are able to select a volume profile that best meets your requirements as volume profiles are available as three predefined IOPS tiers or as a custom IOPS profile:
 
-  * 3 IOPS/GB - A general-purpose tier profile provides IOPS/GB performance suitable for a virtual server instance Balanced profile.
-  * 5 IOPS/GB - This profile provides IOPS/GB performance suitable for a virtual server instance Compute profile.
-  * 10 IOPS/GB - Typically used for a virtual server instance Memory profile.
+   * 3 IOPS/GB - A general-purpose tier profile provides IOPS/GB performance suitable for a virtual server instance Balanced profile.
+   * 5 IOPS/GB - This profile provides IOPS/GB performance suitable for a virtual server instance Compute profile.
+   * 10 IOPS/GB - Typically used for a virtual server instance Memory profile.
 
-  For more information, see [IOPs tiers](/docs/vpc?topic=vpc-block-storage-profiles#tiers). The number of volumes that can be attached to a virtual server depends on how many vCPUs the virtual server contains. For more information, see [Volume attachment limits](/docs/vpc?topic=vpc-attaching-block-storage#vol-attach-limits). Data volumes can be detached and attached to virtual servers as required. Data volumes are encrypted by default with IBM-managed encryption. You can also encrypt data volumes using your own root keys. Refer to [Block storage capacity and performance](/docs/vpc?topic=vpc-capacity-performance) advice on choosing the optimal block storage volume size and performance level.
+   For more information, see [IOPs tiers](/docs/vpc?topic=vpc-block-storage-profiles#tiers). The number of volumes that can be attached to a virtual server depends on how many vCPUs the virtual server contains. For more information, see [Volume attachment limits](/docs/vpc?topic=vpc-attaching-block-storage#vol-attach-limits). Data volumes can be detached and attached to virtual servers as required. Data volumes are encrypted by default with IBM-managed encryption. You can also encrypt data volumes using your own root keys. Refer to [Block storage capacity and performance](/docs/vpc?topic=vpc-capacity-performance) advice on choosing the optimal block storage volume size and performance level.
 * Instance Storage - Optionally, the virtual server can include [Instance storage](/docs/vpc?topic=vpc-instance-storage) which provides solid state drives directly attached to the virtual server instance when the instance is provisioned. Instance storage disk provides fast, temporary storage to improve performance of many workloads including transactional processing. The data stored on instance storage is ephemeral, meaning it is tied directly to the lifecycle of the instance. The instance storage disk is automatically created and destroyed with the instance. Instance storage data is not lost, however, when an instance is rebooted. If performance is a concern then MS SQL Server tempdb can be placed on instance storage
 
 For more information, see [About Block Storage for VPC](/docs/vpc?topic=vpc-block-storage-about).
