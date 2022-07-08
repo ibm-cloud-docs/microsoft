@@ -27,7 +27,7 @@ subcollection: microsoft
 {:download: .download}
 {:DomainName: data-hd-keyref="DomainName"}
 
-# License mobility for Microsoft Software Assurance
+# Licensed Mobility through Microsoft Software Assurance Overview
 {: #microsoft-license-mobility}
 
 ## Overview 
@@ -41,7 +41,6 @@ Organizations around the world are benefitting from the power, flexibility, and 
 With more businesses adopting Infrastructure as a Service (IaaS), customers moving server workloads and applications to the cloud want to take advantage of their existing licensing investments as part of their IT strategy.
 
 License Mobility through Microsoft Software Assurance gives Microsoft Volume Licensing customers the flexibility to deploy certain server applications with active Software Assurance on-premises or in the cloud, without having to buy additional licenses. As a result, customers can take advantage of the lowest and flexible cost infrastructure for changing business priorities.
-
 Because of this new Software Assurance benefit, customers do not need to purchase new Microsoft Client Access Licenses (CALs), and no associated mobility fees exist.
 
 ## Products eligible for License mobility through Software Assurance
