@@ -49,7 +49,7 @@ This guide assumes that you:
 2. Add the SQL Admins group to the local Remote Management Users group so users in this group, can execute remote commands.
 3. Allow inbound TCP port 5022 into the server as this port is used for availability group traffic. Install the Failover Clustering feature and then restart the server:
 
-   ```
+   ```sh
    $domainnb = "<NB_Domain>"
    $group = $domainnb + "\SQLAdmins"
    Add-LocalGroupMember -Group "Remote Management Users" -Member $group
@@ -62,9 +62,9 @@ This guide assumes that you:
 {: #mssql-excluster-wsfc}
 
 1. RDP to the SQL server in the recovery MZR using a user from the SQL Admins group account and open a PowerShell session.
-2. Add <hostname3> into the WSFC cluster with a name of <clustername> e.g. `wsfc01` and then enable Always On availability groups on the new node.
+2. Add `<hostname3>` into the WSFC cluster with a name of `<clustername>` e.g. `wsfc01` and then enable Always On availability groups on the new node.
 
-   ```
+   ```sh
    $sqldb03 = "<hostname3>"
    $cluster = "<clustername>"
    Get-Cluster -Name $cluster | Add-ClusterNode -Name $sqldb03
@@ -76,9 +76,9 @@ This guide assumes that you:
 
 1. RDP to the SQL server in the recovery MZR using a user from the SQL Admins group account and open a PowerShell session.
 2. To participate in Always On availability groups, a server instance requires its own endpoint, which use TCP port 5022 to send and receive traffic between the server instances hosting availability replicas.
-3. The following PowerShell commands are used to configure the endpoint, `Hadr_endpoint` on the default SQL instances (DEFAULT) on the SQL server; <hostname3> enables encryption between the endpoints:
+3. The following PowerShell commands are used to configure the endpoint, `Hadr_endpoint` on the default SQL instances (DEFAULT) on the SQL server; `<hostname3>` enables encryption between the endpoints:
 
-   ```
+   ```sh
    $sqldb03 = "<hostname3>"
    $domainnb = "<NB_Domain>"
    $user = $domainnb + "\sqlsvc"
@@ -104,9 +104,9 @@ To grant connect permissions to the domain service used by the endpoints the fol
 {: #mssql-excluster-testdb}
 
 1. RDP to the SQL server in the recovery MZR using a user from the SQL Admins group account and open a PowerShell session.
-2. Prepare the secondary database by using the `Backup-SqlDatabase` and `Restore-SqlDatabase` commands to create a backup of the TestDatabase on <hostname1> on `TempShare` on <file_share_host>, the SQL server instance that hosts the primary replica. Restore the backup to <hostname3> which will host the secondary replica. The `NoRecovery` restore parameter must be used.
+2. Prepare the secondary database by using the `Backup-SqlDatabase` and `Restore-SqlDatabase` commands to create a backup of the TestDatabase on `<hostname1>` on `TempShare` on `<file_share_host>`, the SQL server instance that hosts the primary replica. Restore the backup to `<hostname3>` which will host the secondary replica. The `NoRecovery` restore parameter must be used.
 
-   ```
+   ```sh
    $sqldb01 = "<hostname1>"
    $sqldb03 = "<hostname3>"
    $filesharehost = "<file_share_host>"
@@ -123,19 +123,19 @@ The new secondary database is in the RESTORING state until it is joined to the a
 ## Create an availability group replica
 {: #mssql-excluster-ag}
 
-Databases added to an availability group are known as availability databases. When adding databases, the database must be an online, read-write database and exist on the server instance that will hosts the primary replica in the WSFC. When added, the database joins the availability group as a primary database and remains available to clients. No secondary database exists until backups of the primary database are restored to the server instance that will become the secondary replica. The new secondary database is in the RESTORING state until it is joined to the availability group. Refer to [Use automatic seeding to initialize a secondary replica for an Always On availability group](https://docs.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatic-seeding-secondary-replicas?view=sql-server-ver15){:external} if the backup and restore method is not used.
+Databases added to an availability group are known as availability databases. When adding databases, the database must be an online, read-write database and exist on the server instance that will hosts the primary replica in the WSFC. When added, the database joins the availability group as a primary database and remains available to clients. No secondary database exists until backups of the primary database are restored to the server instance that will become the secondary replica. The new secondary database is in the RESTORING state until it is joined to the availability group. Refer to [Use automatic seeding to initialize a secondary replica for an Always On availability group](https://docs.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatic-seeding-secondary-replicas?view=sql-server-ver15){: external} if the backup and restore method is not used.
 
 1. RDP to the SQL server in the recovery MZR using a user from the SQL Admins group account and open a PowerShell session.
-2. To ensure that you do not get path errors then use `Invoke-SQLCmd` which forces the loading of the SQL PowerShell library which is then accessible via the PowerShell drive tree. PowerShell treats the objects in SQL Server similar to files in a directory. Replace <hostname3> with the hostname of the SQL server:
+2. To ensure that you do not get path errors then use `Invoke-SQLCmd` which forces the loading of the SQL PowerShell library which is then accessible via the PowerShell drive tree. PowerShell treats the objects in SQL Server similar to files in a directory. Replace `<hostname3>` with the hostname of the SQL server:
 
-   ```
+   ```sh
    invoke-sqlcmd
    cd SQLSERVER:\SQL\<hostname3>
    ```
 
-3. To create the availability group replica, the `New-SqlAvailabilityReplica` command is used to configure the availability mode to asynchronous commit. <hostname1> is the hostname of the primary replica, while <hostname3> is the hostname of the server in the recovery MZR and <fqdn3> is the fully qualified domain name of that server. <availability_group> is the name of the Always On availability group previously configured. Refer to the [New-SqlAvailabilityGroup](https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlavailabilitygroup?view=sqlserver-ps){:external} documentation for descriptions of other parameters.
+3. To create the availability group replica, the `New-SqlAvailabilityReplica` command is used to configure the availability mode to asynchronous commit. `<hostname1>` is the hostname of the primary replica, while `<hostname3>` is the hostname of the server in the recovery MZR and `<fqdn3>` is the fully qualified domain name of that server. `<availability_group>` is the name of the Always On availability group previously configured. Refer to the [New-SqlAvailabilityGroup](https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlavailabilitygroup?view=sqlserver-ps){: external} documentation for descriptions of other parameters.
 
-   ```
+   ```sh
    $sqldb03 = "<hostname3>"
    $sqldb03fqdn = "<fqdn3>"
    $ag = "<availability_group>"
@@ -146,7 +146,7 @@ Databases added to an availability group are known as availability databases. Wh
 
 4. Join the secondary replica to the availability group with the following commands. Joining places the secondary database into the ONLINE state and initiates data synchronization with the corresponding primary database. Data synchronization is the process by which changes to a primary database are reproduced on a secondary database. Data synchronization involves the primary database sending transaction log records to the secondary database.
 
-   ```
+   ```sh
    $sqldb03 = "<hostname3>"
    $ag = "<availability_group>"
    $sqldb03 = "sqldb03"
@@ -157,7 +157,7 @@ Databases added to an availability group are known as availability databases. Wh
 
 5. Start data synchronization by joining each secondary database to the availability group:
 
-   ```
+   ```sh
    $sqldb03 = "<hostname3>"
    $ag = "<availability_group>"
    $agpathsqldb03 = "SQLSERVER:\SQL\" + $sqldb03 + " \DEFAULT\AvailabilityGroups\" + $ag

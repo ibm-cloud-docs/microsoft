@@ -53,9 +53,9 @@ The traffic flows are as follows, as security groups are stateful, only the init
 * ICMP traffic between internal resources.
 * DNS traffic on UDP 53 to the AD servers.
 * IBM Cloud endpoints traffic:
-  * DNS resolver traffic on UDP 53 to the IBM DNS resolvers 161.26.0.10 and 161.26.0.11.
-  * DNS traffic on UDP 53 to the AD servers.
-  * NTP traffic on UDP 123 to the IBM NTP server at 161.26.0.6.
+   * DNS resolver traffic on UDP 53 to the IBM DNS resolvers 161.26.0.10 and 161.26.0.11.
+   * DNS traffic on UDP 53 to the AD servers.
+   * NTP traffic on UDP 123 to the IBM NTP server at 161.26.0.6.
 
 ## RDP traffic from the Internet
 {: #mssql-securitygroups-rdp1}
@@ -66,7 +66,7 @@ The traffic flows are as follows, as security groups are stateful, only the init
 * Rule: Inbound
 * Protocol: TCP
 * Source Type: IP Address
-* Source: <IP_Address>
+* Source: `<IP_Address>`
 * Value: Ports 3389
 
 ## RDP traffic from the bastion hosts
@@ -83,7 +83,7 @@ The traffic flows are as follows, as security groups are stateful, only the init
 * Rule: Inbound
 * Protocol: TCP
 * Source Type: CIDR
-* Source: <bastion_subnet>
+* Source: `<bastion_subnet>`
 * Value: Ports 3389
 
 ## HTTPS traffic from the bastion hosts
@@ -107,14 +107,14 @@ This SMB traffic is required for domain access and file shares.
 * Rule: Inbound
 * Protocol: TCP
 * Source Type: CIDR
-* Source: <vpc_prefix>
+* Source: `<vpc_prefix>`
 * Value: Ports 139, 445
 
 * Security Group: Bastion, AD and SQL
 * Rule: Inbound
 * Protocol: UDP
 * Source Type: CIDR
-* Source: <vpc_prefix>
+* Source: `<vpc_prefix>`
 * Value: Ports 137-138
 
 * Security Group: SQL
@@ -128,14 +128,14 @@ This SMB traffic is required for domain access and file shares.
 * Rule: Outbound
 * Protocol: TCP
 * Destination Type: CIDR
-* Destination: <vpc_prefix>
+* Destination: `<vpc_prefix>`
 * Value: Ports 445
 
 * Security Group: Bastion, AD and SQL
 * Rule: Outbound
 * Protocol: UDP
 * Destination Type: CIDR
-* Destination: <vpc_prefix>
+* Destination: `<vpc_prefix>`
 * Value: Ports 137-138
 
 ## RPC traffic between the Windows cluster nodes.
@@ -145,61 +145,61 @@ This SMB traffic is required for domain access and file shares.
 * Rule: Inbound
 * Protocol: TCP
 * Source Type: CIDR
-* Source: <sql_subnet>
+* Source: `<sql_subnet>`
 * Value: Ports 135
 
 * Security Group: SQL
 * Rule: Outbound
 * Protocol: TCP
 * Destination Type: CIDR
-* Destination: <sql_subnet>
+* Destination: `<sql_subnet>`
 * Value: Ports 135
 
 * Security Group: SQL
 * Rule: Inbound
 * Protocol: TCP
 * Source Type: CIDR
-* Source: <sql_subnet>
+* Source: `<sql_subnet>`
 * Value: Ports 49152-65535
 
 * Security Group: SQL
 * Rule: Outbound
 * Protocol: TCP
 * Destination Type: CIDR
-* Destination: <sql_subnet>
+* Destination: `<sql_subnet>`
 * Value: Ports 49152-65535
 
 * Security Group: SQL
 * Rule: Inbound
 * Protocol: UDP
 * Source Type: CIDR
-* Source: <sql_subnet>
+* Source: `<sql_subnet>`
 * Value: Ports 49152-65535
 
 * Security Group: SQL
 * Rule: Outbound
 * Protocol: UDP
 * Destination Type: CIDR
-* Destination: <sql_subnet>
+* Destination: `<sql_subnet>`
 * Value: Ports 49152-65535
 
 ## Replication traffic between domain controllers
 {: #mssql-securitygroups-adrep1}
 
-In this example we allow all ports between the active directory subnets. See [How to configure a firewall for Active Directory domains and trusts](https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/config-firewall-for-ad-domains-and-trusts#windows-server-2008-and-later-versions){:external} for all the ptotocols used between domain controllers to enable you to lock this down further if required.
+In this example we allow all ports between the active directory subnets. See [How to configure a firewall for Active Directory domains and trusts](https://docs.microsoft.com/en-us/troubleshoot/windows-server/identity/config-firewall-for-ad-domains-and-trusts#windows-server-2008-and-later-versions){: external} for all the ptotocols used between domain controllers to enable you to lock this down further if required.
 
 * Security Group: AD
 * Rule: Inbound
 * Protocol: All
 * Destination Type: CIDR
-* Destination: <ad_subnet>
+* Destination: `<ad_subnet>`
 * Value: Ports all
 
 * Security Group: AD
 * Rule: Outbound
 * Protocol: All
 * Destination Type: CIDR
-* Destination: <ad_subnet>
+* Destination: `<ad_subnet>`
 * Value: Ports all
 
 ## AD traffic between member servers and domain controllers
@@ -209,42 +209,42 @@ In this example we allow all ports between the active directory subnets. See [Ho
 * Rule: Outbound
 * Protocol: TCP
 * Destination Type: CIDR
-* Destination: <ad_subnet>
+* Destination: `<ad_subnet>`
 * Value: Ports 464, 88, 389, 636, 3268, 3269, 135, 49152-65535
 
 * Security Group: SQL
 * Rule: Outbound
 * Protocol: TCP
 * Destination Type: CIDR
-* Destination: <ad_subnet>
+* Destination: `<ad_subnet>`
 * Value: Ports 464, 88, 389, 636, 3268, 3269, 135, 49152-65535
 
 * Security Group: AD
 * Rule: Inbound
 * Protocol: TCP
 * Source Type: CIDR
-* Source: <bastion_subnet>, <sql_subnet>
+* Source: `<bastion_subnet>`, `<sql_subnet>`
 * Value: Ports 464, 88, 389, 636, 3268, 3269, 135, 49152-65535
 
 * Security Group: Bastion
 * Rule: Outbound
 * Protocol: UDP
 * Destination Type: CIDR
-* Destination: <ad_subnet>
+* Destination: `<ad_subnet>`
 * Value: Ports 464, 88, 389, 49152-65535
 
 * Security Group: SQL
 * Rule: Outbound
 * Protocol: UDP
 * Destination Type: CIDR
-* Destination: <ad_subnet>
+* Destination: `<ad_subnet>`
 * Value: Ports 464, 88, 389, 49152-65535
 
 * Security Group: AD
 * Rule: Inbound
 * Protocol: UDP
 * Source Type: CIDR
-* Source: <bastion_subnet>, <sql_subnet>
+* Source: `<bastion_subnet>`, `<sql_subnet>`
 * Value: Ports 464, 88, 389, 49152-65535
 
 ## SQL traffic on TCP 1433 from the bastion hosts to the SQL servers
@@ -254,14 +254,14 @@ In this example we allow all ports between the active directory subnets. See [Ho
 * Rule: Inbound
 * Protocol: TCP
 * Source Type: CIDR
-* Source: <bastion_subnet>
+* Source: `<bastion_subnet>`
 * Value: Ports 1433
 
 * Security Group: Bastion
 * Rule: Outbound
 * Protocol: TCP
 * Destination Type: CIDR
-* Destination: <sql_subnet>
+* Destination: `<sql_subnet>`
 * Value: Ports 1433
 
 ## SQL client to listener on TCP 6789 from the bastion hosts to the SQL servers
@@ -271,14 +271,14 @@ In this example we allow all ports between the active directory subnets. See [Ho
 * Rule: Inbound
 * Protocol: TCP
 * Source Type: CIDR
-* Source: <bastion_subnet>
+* Source: `<bastion_subnet>`
 * Value: Ports 6789
 
 * Security Group: Bastion
 * Rule: Outbound
 * Protocol: TCP
 * Destination Type: CIDR
-* Destination: <sql_subnet>
+* Destination: `<sql_subnet>`
 * Value: Ports 6789
 
 ## Always On availability group traffic on TCP 5022 between Microsoft SQL servers
@@ -288,14 +288,14 @@ In this example we allow all ports between the active directory subnets. See [Ho
 * Rule: Inbound
 * Protocol: TCP
 * Source Type: CIDR
-* Source: <sql_subnet>
+* Source: `<sql_subnet>`
 * Value: Ports 5022
 
 * Security Group: SQL
 * Rule: Outbound
 * Protocol: TCP
 * Destination Type: CIDR
-* Destination: <sql_subnet>
+* Destination: `<sql_subnet>`
 * Value: Ports 5022
 
 ## ICMP traffic between internal resources
@@ -322,14 +322,14 @@ In this example we allow all ports between the active directory subnets. See [Ho
 * Rule: Inbound
 * Protocol: UDP
 * Source Type: CIDR
-* Source: <sql_subnet>, <bastion_subnet> and <ad_subnet>
+* Source: `<sql_subnet>`, `<bastion_subnet>` and `<ad_subnet>`
 * Value: Ports 53
 
 * Security Group: SQL and Bastion
 * Rule: Outbound
 * Protocol: UDP
 * Destination Type: CIDR
-* Destination: <ad_subnet>
+* Destination: `<ad_subnet>`
 * Value: Ports 53
 
 ## IBM Cloud endpoints traffic

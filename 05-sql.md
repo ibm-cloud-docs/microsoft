@@ -44,8 +44,8 @@ A virtual server of the following specification was selected for the SQL server 
 * **NIC Qty:** 1
 * **Instance Storage:** 150GB
 * **Data Volumes:**
-  * **sqldb01-data:** 1024 GB, Tiered-5IOPS/GB, Provider Managed Encryption
-  * **sqldb01-log:** 1024 GB, Tiered-5IOPS/GB, Provider Managed Encryption
+   * **sqldb01-data:** 1024 GB, Tiered-5IOPS/GB, Provider Managed Encryption
+   * **sqldb01-log:** 1024 GB, Tiered-5IOPS/GB, Provider Managed Encryption
 
 ### Compute
 {: #mssql-sql-order-compute}
@@ -70,11 +70,11 @@ When planning your SQL Server on IBM Cloud VPC, there are three storage componen
 * Boot volumes - When virtual server is created, a 100 GB, 3 IOPS/GB boot volume is created from block storage and attached to the instance. By default, boot volumes are encrypted by IBM-managed encryption, however, customer-managed encryption is an option. Boot volumes can not be detached, deleted or increased or reduced in size. Boot volumes are always deleted when the virtual server is deleted. Boot volumes contain the operating system files.
 * Data volumes - Data volumes leverage block storage for VPC and provides hypervisor-mounted, high-performance data storage that is stored redundantly across multiple physical disks in an Availability Zone (AZ) to prevent data loss due to failure of any single component. Data volumes range from 10 GB to 2000 GB and maximum IOPS varies based on volume size and the IOPS tier profile selected. For example, the max IOPS for a 5 IOPS/GB volume of 2000 GB is 10,000 IOPS. You are able to select a volume profile that best meets your requirements as volume profiles are available as three predefined IOPS tiers or as a custom IOPS profile:
 
-  * 3 IOPS/GB - A general-purpose tier profile provides IOPS/GB performance suitable for a virtual server instance Balanced profile.
-  * 5 IOPS/GB - This profile provides IOPS/GB performance suitable for a virtual server instance Compute profile.
-  * 10 IOPS/GB - Typically used for a virtual server instance Memory profile.
+   * 3 IOPS/GB - A general-purpose tier profile provides IOPS/GB performance suitable for a virtual server instance Balanced profile.
+   * 5 IOPS/GB - This profile provides IOPS/GB performance suitable for a virtual server instance Compute profile.
+   * 10 IOPS/GB - Typically used for a virtual server instance Memory profile.
 
-  For more information, see [IOPs tiers](/docs/vpc?topic=vpc-block-storage-profiles#tiers). The number of volumes that can be attached to a virtual server depends on how many vCPUs the virtual server contains. For more information, see [Volume attachment limits](/docs/vpc?topic=vpc-attaching-block-storage#vol-attach-limits). Data volumes can be detached and attached to virtual servers as required. Data volumes are encrypted by default with IBM-managed encryption. You can also encrypt data volumes using your own root keys. Refer to [Block storage capacity and performance](/docs/vpc?topic=vpc-capacity-performance) advice on choosing the optimal block storage volume size and performance level.
+   For more information, see [IOPs tiers](/docs/vpc?topic=vpc-block-storage-profiles#tiers). The number of volumes that can be attached to a virtual server depends on how many vCPUs the virtual server contains. For more information, see [Volume attachment limits](/docs/vpc?topic=vpc-attaching-block-storage#vol-attach-limits). Data volumes can be detached and attached to virtual servers as required. Data volumes are encrypted by default with IBM-managed encryption. You can also encrypt data volumes using your own root keys. Refer to [Block storage capacity and performance](/docs/vpc?topic=vpc-capacity-performance) advice on choosing the optimal block storage volume size and performance level.
 * Instance Storage - Optionally, the virtual server can include [Instance storage](/docs/vpc?topic=vpc-instance-storage) which provides solid state drives directly attached to the virtual server instance when the instance is provisioned. Instance storage disk provides fast, temporary storage to improve performance of many workloads including transactional processing. The data stored on instance storage is ephemeral, meaning it is tied directly to the lifecycle of the instance. The instance storage disk is automatically created and destroyed with the instance. Instance storage data is not lost, however, when an instance is rebooted. If performance is a concern then MS SQL Server tempdb can be placed on instance storage
 
 For more information, see [About Block Storage for VPC](/docs/vpc?topic=vpc-block-storage-about).
@@ -84,9 +84,9 @@ Under rare maintenance operations, a live migration of the virtual server to a n
 ## Connecting to the server
 {: #mssql-sql-connect}
 
-Refer to [Connecting to Windows instances](/docs/vpc?topic=vpc-vsi_is_connecting_windows) to access the Windows Administrator's password, however, in short the following commands are used from your laptop, where the instances command returns the <INSTANCE_ID> of the virtual server:
+Refer to [Connecting to Windows instances](/docs/vpc?topic=vpc-vsi_is_connecting_windows) to access the Windows Administrator's password, however, in short the following commands are used from your laptop, where the instances command returns the `<INSTANCE_ID>` of the virtual server:
 
-```
+```sh
 ibmcloud is instances
 ibmcloud is instance-initialization-values <INSTANCE_ID> --private-key @~/.ssh/id_rsa
 ```
@@ -99,9 +99,9 @@ This task should not be started until after the AD server has been installed.
 At a Powershell prompt on the SQL server enter the following commands that enable the server to join the domain:
 
 * The `Get-DnsClientServerAddress` captures the Interface Index for the IPv4 Ethernet interface, so that the DNS can be changed from the IBM Cloud DNS server to the ADDNS server. The `Add-Computer` command will fail if this step is missed as the server will not be able to locate the domain controller. The `Add-Computer -Server` only accepts FQDN.
-* The `Add-Computer` command adds the server to the domain <domain> using the ADDNS server <ad_server_fqdn> and then restarts the server to make the change effective.
+* The `Add-Computer` command adds the server to the domain `<domain>` using the ADDNS server `<ad_server_fqdn>` and then restarts the server to make the change effective.
 
-```
+```sh
 $dns = "<ADDNS_IP_Address>"
 $adserver = "<ad_server_fqdn>"
 $domain = "<domain>"
@@ -120,9 +120,9 @@ Add-Computer -DomainName $domain -Server $adserver -Restart -Credential $credent
 The following PowerShell commands are used to accomplish the following:
 
 * Check to see the status of the SMB2, typically this protocol is disabled in the virtual server image. If disabled it can be enabled using `Set-SmbServerConfiguration` , as it is required for SMB to operate.
-* Connect to the share on <bastion_hostname>\Downloads,as the Z: drive using the user <smbuser> and the password <share_password>
+* Connect to the share on `<bastion_hostname>\Downloads`,as the Z: drive using the user `<smbuser>` and the password `<share_password>`
 
-```
+```sh
 $bastion = "<bastion_hostname>"
 $user = "<smbuser>"
 $shareuser = $bastion + '\' + $user
@@ -143,14 +143,14 @@ The Microsoft SQL on VPC deployment patterns leverage Microsoft Storage Spaces. 
 
 From the IBM Cloud console, capture the storage volumes information for the SQL server. For example:
 
-```
+```sh
 sqldb01-data: 0787-ff88b86a-1e29-4f0d-8a69-67b4deda3d5c-lpcn2
 sqldb01-log: 0787-1d41b85e-4e8a-499e-b889-13b96db5251c-2w2n2
 ```
 
 The following PowerShell command is used to capture the Windows OS view of the SerialNumber for use in subsequent PowerShell commands; `Get-StoragePool -IsPrimordial $true | Get-PhysicalDisk -CanPool $True`. As can be seen from the following example, the SerialNumbers can be captured:
 
-```
+```sh
 Number FriendlyName       SerialNumber                         MediaType   CanPool OperationalStatus HealthStatus Usage           Size
 ------ ------------       ------------                         ---------   ------- ----------------- ------------ -----           ----
 1      QEMU QEMU HARDDISK cloud-init-0787_1c6e0975-a584-43ca-b Unspecified True    OK                Healthy      Auto-Select   378 KB
@@ -163,21 +163,21 @@ Number FriendlyName       SerialNumber                         MediaType   CanPo
 ### Create sqldatapool storage pool
 {: #mssql-sql-configstorage-sqldatapool}
 
-The following PowerShell command can be used to configure the sqldatapool storage pool, replace <SerialNumber> with the serial number for the sqldb01-data volume. This command achieves the following:
+The following PowerShell command can be used to configure the sqldatapool storage pool, replace `<SerialNumber>` with the serial number for the sqldb01-data volume. This command achieves the following:
 
 * Creates a storage pool called sqldatapool.
 * Creates a virtual disk in this pool called sqldata for striping (-ResiliencySettingName simple).
 * The virtual disk is initialized with a GPT partition and assigned a drive letter of D.
 * The virtual disk is formatted with the NTFS filesystem with a block size of 64KB and assigned a label of SQLDATA.
 
-```
+```sh
 $dataserial = "<SerialNumber>"
 New-StoragePool -FriendlyName "sqldatapool" -StorageSubsystemFriendlyName "Windows Storage*" -PhysicalDisks (Get-PhysicalDisk -SerialNumber $dataserial) | New-VirtualDisk -FriendlyName "sqldata" -Interleave 65536 -NumberOfColumns 1 -ResiliencySettingName simple –UseMaximumSize | Initialize-Disk -PartitionStyle GPT -PassThru | New-Partition -DriveLetter "D" -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel "SQLDATA" -AllocationUnitSize 65536 -Confirm:$false -UseLargeFRS
 ```
 
 If you are using multiple data volumes for increased performance, then this PowerShell command must be modified. An example for 2 disks:
 
-```
+```sh
 New-StoragePool -FriendlyName "sqldatapool" -StorageSubsystemFriendlyName "Windows Storage*" -PhysicalDisks (Get-PhysicalDisk | where {($_.SerialNumber -eq "<Disk1_SerialNumber>") -or ($_.SerialNumber -eq "<Disk2_SerialNumber>")}) | New-VirtualDisk -FriendlyName "sqldata" -Interleave 65536 -NumberOfColumns 2 -ResiliencySettingName simple –UseMaximumSize | Initialize-Disk -PartitionStyle GPT -PassThru | New-Partition -DriveLetter "D" -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel "SQLDATA" -AllocationUnitSize 65536 -Confirm:$false -UseLargeFRS
 ```
 
@@ -186,14 +186,14 @@ The -NumberOfColumns matches the number of disks to stripe data across.
 ### Create the sqllogpool storage pool
 {: #mssql-sql-configstorage-sqllogpool}
 
-The following PowerShell command can be used to configure the sqllogpool storage pool, replace <SerialNumber> with the serial number for the sqldb01-log volume. This command achieves the following:
+The following PowerShell command can be used to configure the sqllogpool storage pool, replace `<SerialNumber>` with the serial number for the sqldb01-log volume. This command achieves the following:
 
 * Creates a storage pool called sqllogpool.
 * Creates a virtual disk in this pool called sqllog for striping (-ResiliencySettingName simple).
 * The virtual disk is initialized with a GPT partition and assigned a drive letter of E.
 * The virtual disk is formatted with the NTFS filesystem with a block size of 64KB and assigned a label of SQLLOG.
 
-```
+```sh
 $logserial = "<SerialNumber>"
 New-StoragePool -FriendlyName "sqllogpool" -StorageSubsystemFriendlyName "Windows Storage*" -PhysicalDisks (Get-PhysicalDisk -SerialNumber $logserial) | New-VirtualDisk -FriendlyName "sqllog" -Interleave 65536 -NumberOfColumns 1 -ResiliencySettingName simple –UseMaximumSize | Initialize-Disk -PartitionStyle GPT -PassThru | New-Partition -DriveLetter "E" -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel "SQLLOG" -AllocationUnitSize 65536 -Confirm:$false -UseLargeFRS
 ```
@@ -201,12 +201,12 @@ New-StoragePool -FriendlyName "sqllogpool" -StorageSubsystemFriendlyName "Window
 ### Initialize instance storage for tempdb
 {: #mssql-sql-configstorage-tempdb}
 
-The drive for tempdb does not use Storage Spaces as instance storage only consists of a single volume. The following PowerShell command can be used to configure the volume, replace <SerialNumber> with the serial number for the instance storage volume. This command achieves the following:
+The drive for tempdb does not use Storage Spaces as instance storage only consists of a single volume. The following PowerShell command can be used to configure the volume, replace `<SerialNumber>` with the serial number for the instance storage volume. This command achieves the following:
 
 * Creates a drive initialized with a GPT partition and assigned a drive letter of F.
 * The drive is formatted with the NTFS filesystem with a block size of 64KB and assigned a label of TEMPDB.
 
-```
+```sh
 $tempdbserial = "<SerialNumber>"
 Get-Disk | Where SerialNumber -eq $tempdbserial | Initialize-Disk -PartitionStyle GPT -PassThru | New-Partition -DriveLetter "F" -UseMaximumSize | Format-Volume -FileSystem NTFS -NewFileSystemLabel "TEMPDB" -AllocationUnitSize 65536 -Confirm:$false -UseLargeFRS
 ```
@@ -226,7 +226,7 @@ This documentation assumes that you are using option 3, have created a Configura
 
  `C:\Users\Administrator\Downloads\SQL2019\Extracted\SETUP.exe /ConfigurationFile=C:\Users\Administrator\Downloads\ConfigurationFile.ini /TCPENABLED="1" /SQLSVCPASSWORD="<svc_password>" /AGTSVCPASSWORD="<agt_password>"`
 
-<svc_password> is the password for the domain service account used for SQL Server service and <agt_password> is the password for the domain service account used for SQL Agent.
+<svc_password> is the password for the domain service account used for SQL Server service and `<agt_password>` is the password for the domain service account used for SQL Agent.
 
 By default, SQL Server is installed with TCP protocol disabled and `/TCPENABLED="1"` enables TCP.
 
@@ -256,7 +256,7 @@ Use the following command to allow TCP 5022 through the Windows firewall if you 
 
 To synchronize time automatically from the AD domain hierarchy, run the following commands:
 
-```
+```sh
 w32tm /config /syncfromflags:domhier /update
 net stop w32time
 net start w32time
@@ -269,7 +269,7 @@ w32tm /query /status
 As the SQL server is not Internet connected, the module will need to be downloaded to the bastion host copied across to SQL server's C:\Program
 Files\WindowsPowerShell\Modules directory and then installed. The following PowerShell commands assume you have downloaded the module to the bastion host and configured a share connected to the Z: drive
 
-```
+```sh
 Copy-Item "Z:\SqlServer" -Destination "C:\Program Files\WindowsPowerShell\Modules" -Recurse
 Import-Module SQLServer
 ```

@@ -1,0 +1,141 @@
+#  Name your file `toc.yaml`
+#  Make sure you include all nav file coding requirements, as defined in https://test.cloud.ibm.com/docs/writing?topic=writing-code-nav
+#  Anything with a fully qualified URL with `http` or `https` will get an external link icon added to the nav entry
+
+toc:
+  properties:
+    subcollection: microsoft
+    service-name: microsoft
+    category: compute
+    audience: solution
+    href: /docs/microsoft?topic=microsoft-overview
+    product-page: https://cloud.ibm.com/
+    path: microsoft
+    label: Microsoft Software on IBM Cloud
+
+  entries:
+    - navgroup:
+        id: learn
+        topics:
+        - topic: microsoft-overview.md
+          navtitle: Overview of Microsoft on IBM
+        - topic: microsoft-byol.md
+          navtitle: Bring Your Own License (BYOL)
+        - topic: microsoft-license-mobility.md
+          navtitle: License Mobility Overview
+        - topic: microsoft-license-mobility-process.md
+          navtitle: License Mobility Deployment Process
+
+    - navgroup:
+        id: howto
+        topics:
+
+        - topicgroup:
+            label: Microsoft on VPC
+            topics:
+            - link:
+                label: Virtual Private Cloud Solution
+                href: https://www.ibm.com/cloud/vpc
+            - link:
+                label: Virtual Private Cloud Start
+                href: /vpc/vpc-getting-started
+            - link:
+                label: BYOL on VPC
+                href: /vpc/vpc-byol-vpc-about
+            - link:
+                label: Guest OS Lifecycle on VPC
+                href: /vpc/vpc-guest-os-lifecycle
+
+        - topicgroup:
+            label: Microsoft Images - Day 0
+            topics:
+            - link:
+                label: MSFT ISO Images offered
+                href: /vpc/vpc-about-images
+            - link:
+                label: Lifecycle of MSFT Images VPC
+                href: /vpc/vpc-guest-os-lifecycle
+
+        - topicgroup:
+            label: Microsoft Images - Day 1
+            topics:
+            - link:
+                label: Select a MSFT stock Image
+                href: /vpc/vpc-about-images#stock-images
+            - link:
+                label: Select a MSFT custom Image
+                href: /vpc/vpc-planning-custom-images
+            - link:
+                label: Creating a MSFT custom Image
+                href: /vpc/vpc-create-windows-custom-image
+
+        - topicgroup:
+            label: Microsoft Images - Day 2
+            topics:
+            - link:
+                label: Patch a Microsoft image - Security and Patches
+                href: /vpc/vpc-responsibilities-vpc
+        
+        - topicgroup:
+            label: Microsoft on Classic
+            topics:
+            - link:
+                label: IBM Cloud Bare Metal Severs Solution
+                href: https://www.ibm.com/cloud/bare-metal-servers/classic
+            - link:
+                label: IBM Cloud Bare Metal Servers Docs
+                href: /bare-metal/bare-metal-getting-started
+            - link:
+                label: Guest OS Lifecycle for Bare Metal
+                href: /bare-metal/bare-metal-getting-started
+            - link:
+                label: About Software for Bare Metal
+                href: /bare-metal/bare-metal-about-software
+
+        - topicgroup:
+            label: Microsoft SQL Server on VPC
+            topics:
+            - 01-about.md
+            - topicgroup:
+                label: Single AZ deployment pattern
+                topics:
+                - 02-single-az.md
+                - 03-bastion.md
+                - 04-ad.md
+                - 05-sql.md
+            - topicgroup:
+                label: Dual AZ deployment pattern
+                topics:
+                - 06-dual-az.md
+                - 07-ad.md
+                - 08-file-share.md
+                - 09-create-cluster.md
+            - topicgroup:
+                label: Dual multi-zone region deployment pattern
+                topics:
+                - 10-dual-mzr.md
+                - 11-ad.md
+                - 12-extend-cluster.md
+                - 13-baseline.md
+                - 14-security-groups.md
+                - 15-testing.md
+                - 16-ops.md
+                - 17-migration.md
+                - 18-configini.md
+            - topicgroup:
+                label: Troubleshooting MS SQL
+                topics:
+                - ts-ms-sql-verify-open-ports.md
+                - ts-ms-sql-remove-smb-share.md
+                - ts-ms-sql-rename-virtual-servers.md
+                - ts-ms-sql-add-text-to-file.md
+                - ts-ms-sql-use-domain-service-account.md
+                - ts-ms-sql-verify-dnn.md
+                - ts-ms-sql-verify-server-listening.md
+                - ts-ms-sql-windows-server-updates.md
+
+    - navgroup:
+        id: help
+        topics:
+        - topic: microsoft-help-support.md
+          navtitle: Getting help and support

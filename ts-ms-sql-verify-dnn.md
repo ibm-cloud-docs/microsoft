@@ -28,7 +28,7 @@ subcollection: microsoft
 
 Use the `Resolve-DnsName` PowerShell command to see that the DNN has been configured correctly in DNS. See the following result for a 3 node cluster, where the DNN name `dnnlsnr` resolves to the three nodes:
 
-```
+```sh
 Resolve-DnsName -Name dnnlsnr
 
 Name                                     Type   TTL   Section    IPAddress

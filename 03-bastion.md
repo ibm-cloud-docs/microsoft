@@ -67,9 +67,9 @@ A virtual server of the following specification is suitable for a bastion host a
 
 After the virtual server has been deployed you need to connect a Floating IP address to it so that you can access the server remotely, refer to [Adding a floating IP address](/docs/vpc?topic=vpc-using-instance-vnics#adding-floating-ip).
 
-Refer to [Connecting to Windows instances](/docs/vpc?topic=vpc-vsi_is_connecting_windows) to access the Windows Administrator's password, however, in short the following commands are used from your laptop, where the instances command returns the <INSTANCE_ID> of the virtual server:
+Refer to [Connecting to Windows instances](/docs/vpc?topic=vpc-vsi_is_connecting_windows) to access the Windows Administrator's password, however, in short the following commands are used from your laptop, where the instances command returns the `<INSTANCE_ID>` of the virtual server:
 
-```
+```sh
 ibmcloud is instances
 ibmcloud is instance-initialization-values <INSTANCE_ID> --private-key @~/.ssh/id_rsa
 ```
@@ -79,14 +79,14 @@ ibmcloud is instance-initialization-values <INSTANCE_ID> --private-key @~/.ssh/i
 
 In this deployment pattern we are using the following products which should be downloaded to the bastion host:
 
-* MS SQL Server Developer Edition which can be downloaded from [SQL Server products & resources](https://www.microsoft.com/en-gb/evalcenter/evaluate-sql-server-2019?filetype=EXE){:external}.
-* SQL Server Management Studio (SSMS) which can be downloaded from [Download SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15){:external}.
-* Diskspd is a storage subsystem testing tool and can be downloaded from [DISKSPD 2.0.21a](https://github.com/Microsoft/diskspd/releases){:external}.
-* PowerShell can interact with SQL Server instances, however, requires a module to be installed. If this module must be installed on the non-Internet connected SQL sever then download this module. Refer to [SqlServer](https://docs.microsoft.com/en-us/powershell/module/sqlserver/?view=sqlserver-ps){:external} for more details.
+* MS SQL Server Developer Edition which can be downloaded from [SQL Server products & resources](https://www.microsoft.com/en-gb/evalcenter/evaluate-sql-server-2019?filetype=EXE){: external}.
+* SQL Server Management Studio (SSMS) which can be downloaded from [Download SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15){: external}.
+* Diskspd is a storage subsystem testing tool and can be downloaded from [DISKSPD 2.0.21a](https://github.com/Microsoft/diskspd/releases){: external}.
+* PowerShell can interact with SQL Server instances, however, requires a module to be installed. If this module must be installed on the non-Internet connected SQL sever then download this module. Refer to [SqlServer](https://docs.microsoft.com/en-us/powershell/module/sqlserver/?view=sqlserver-ps){: external} for more details.
 
 You may find that Windows Explorer a little difficult to download files and want to disable IE Enhanced Security Configuration:
 
-```
+```sh
 function Disable-InternetExplorerESC {
     $AdminKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
     $UserKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}"
@@ -110,7 +110,7 @@ The SQL server download must be downloaded interactively as it uses a web form. 
 
    The downloaded file, SQL2019-SSEI-Eval.exe, is just "a downloader" that will download the actual installation media from Microsoft. This media can be either ISO or CAB. In this example we download the CAB media and then extract them for further information review the help documentation `C:\Users\Administrator\Downloads\SQL2019-SSEI-Eval.exe /Help`. Enter the following commands to download the CAB media and extract it:
 
-   ```
+   ```sh
    C:\Users\Administrator\Downloads\SQL2019-SSEI-Eval.exe /ACTION=Download MEDIAPATH=C:\Users\Administrator\Downloads\SQL2019 /MEDIATYPE=CAB /QUIET
    C:\Users\Administrator\Downloads\SQL2019\SQLServer2019-x64-ENU.exe /q /x:C:\Users\Administrator\Downloads\SQL2019\Extracted
    ```
@@ -120,7 +120,7 @@ The SQL server download must be downloaded interactively as it uses a web form. 
 
 The following commands downloads SSMS to C:\Users\Administrator\Downloads:
 
-```
+```sh
 $client = new-object System.Net.WebClient
 $client.DownloadFile("https://aka.ms/ssmsfullsetup","C:\Users\Administrator\Downloads\SSMS-Setup-ENU.exe")
 ```
@@ -130,7 +130,7 @@ $client.DownloadFile("https://aka.ms/ssmsfullsetup","C:\Users\Administrator\Down
 
 The following commands downloads diskspd to C:\Users\Administrator\Downloads and expands the zip file to C:\Users\Administrator\Downloads\DiskSpd:
 
-```
+```sh
 $client = new-object System.Net.WebClient
 $client.DownloadFile("https://github.com/microsoft/diskspd/releases/download/v2.0.21a/DiskSpd.zip","C:\Users\Administrator\Downloads\DiskSpd-2.0.21a.zip")
 Expand-Archive -LiteralPath C:\Users\Administrator\Downloads\DiskSpd-2.0.21a.zip -DestinationPath C:\Users\Administrator\Downloads\DiskSpd
@@ -147,10 +147,10 @@ If you want to install the module on the SQL server, which is not Internet conne
 The following PowerShell commands are used to accomplish the following:
 
 * Check to see the status of the SMB2, typically this protocol is disabled in the virtual server image. If disabled it can be enabled, as it is required for SMB to operate.
-* A local user <smbuser> is created to access the share remotely. Insert your required password at <password>.
+* A local user `<smbuser>` is created to access the share remotely. Insert your required password at `<password>`.
 * Share the C:\Users\Administrator\Downloads directory is shared.
 
-   ```
+   ```sh
    $user = "<smbuser>"
    $password = "<password>"
    Get-SmbServerConfiguration | Select EnableSMB2Protocol
@@ -160,14 +160,14 @@ The following PowerShell commands are used to accomplish the following:
    New-SmbShare -Name "Downloads" -Path "C:\Users\Administrator\Downloads" -ReadAccess $user
    ```
 
-   The share will now be accessible from servers in your VPC as long as the security group allows the traffic. For more information on SMB, see [Overview of file sharing using the SMB 3 protocol in Windows Server](https://docs.microsoft.com/en-us/windows-server/storage/file-server/file-server-smb-overview){:external}.
+   The share will now be accessible from servers in your VPC as long as the security group allows the traffic. For more information on SMB, see [Overview of file sharing using the SMB 3 protocol in Windows Server](https://docs.microsoft.com/en-us/windows-server/storage/file-server/file-server-smb-overview){: external}.
 
 ## Install SQL Server Management Studio
 {: #mssql-bastion-smss}
 
 SQL Server Management Studio (SSMS) is an integrated environment for managing any SQL infrastructure and provides tools to configure, monitor, and administer instances of SQL Server and databases. To install SSMS using a command prompt script.
 
-```
+```sh
 start "" /w C:\Users\Administrator\Downloads\SSMS-Setup-ENU.exe /Quiet SSMSInstallRoot=C:\SSMS
 ```
 
@@ -181,9 +181,9 @@ This task should not be started until after the AD server has been installed.
 At a PowerShell prompt on the bastion host, enter the following commands that enable the server to join the domain:
 
 * The `Get-DnsClientServerAddress` captures the Interface Index for the IPv4 Ethernet interface, so that the DNS can be changed from the IBM Cloud DNS server to the ADDNS server. The `Add-Computer` command will fail if this step is missed as the server will not be able to locate the domain controller. The `Add-Computer -Server` only accepts FQDN.
-* The `Add-Computer` command adds the server to the domain <domain> using the ADDNS server <ad_server_fqdn> and then restarts the server to make the change effective.
+* The `Add-Computer` command adds the server to the domain `<domain>` using the ADDNS server `<ad_server_fqdn>` and then restarts the server to make the change effective.
 
-```
+```sh
 $dns = "<ADDNS_IP_Address>"
 $adserver = "<ad_server_fqdn>"
 $domain = "<domain>"
@@ -201,7 +201,7 @@ Add-Computer -DomainName $domain -Server $adserver -Restart -Credential $credent
 
 In Windows Server 2019, you can optionally install the Active Directory module for Windows PowerShell, using the following PowerShell commands. By adding the module, you can access AD information from the bastion host rather then RDP to the AD server:
 
-```
+```sh
 Import-Module ServerManager
 Add-WindowsFeature -Name "RSAT-AD-PowerShell" –IncludeAllSubFeature
 Install-Module -Name WindowsCompatibility
@@ -217,7 +217,7 @@ To install the latest version of the SQLServer module, use the following command
 
 To synchronize time automatically from the AD domain hierarchy, run the following commands:
 
-```
+```sh
 w32tm /config /syncfromflags:domhier /update
 net stop w32time
 net start w32time
