@@ -55,7 +55,7 @@ A new form is required if you add a product, renew Software Assurance, or switch
 
 **4. Submit the verification form to Microsoft.**
 
-Your Microsoft channel partner can help you fill out the form properly and submit it to Microsoft on your behalf.
+Your Microsoft channel partner can help you fill out the form properly.
 
 **5. Deploy your solution.**
 
