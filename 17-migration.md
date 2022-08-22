@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-05-23"
+  years: 2021, 2022
+lastupdated: "2022-08-22"
 
 keywords:
 
@@ -51,7 +51,7 @@ Considerations other than the movement of data are required in a migration such 
 ## Native SQL Server backup/restore
 {: #mssql-migration-native}
 
-Microsoft SQL Server databases support native backup and restore operations that use full and differential backup (.bak) files or differential restore and log restores. Using native .bak files is the simplest way to back up and restore SQL Server databases and a simple migration method for single or multiple databases in an instance. Full backups of the database on your existing server are taken and copied to an IBM Cloud Object Storage bucket. It is then restored, via a staging server with [s3fs](https://github.com/s3fs-fuse/s3fs-fuse){: external} or [rclone](https://rclone.org/){: external} and SMB\Samba share, on your SQL Server database instance virtual server in IBM Cloud VPC.
+Microsoft SQL Server databases support native backup and restore operations that use full and differential backup (.bak) files or differential restore and log restores. Using native .bak files is the simplest way to back up and restore SQL Server databases and a simple migration method for single or multiple databases in an instance. Full backups of the database on your existing server are taken and copied to an IBM Cloud Object Storage bucket. It is then restored, via a staging server with [s3fs](https://github.com/s3fs-fuse/s3fs-fuse){:external} or [rclone](https://rclone.org/){:external} and SMB\Samba share, on your SQL Server database instance virtual server in IBM Cloud VPC.
 
 ## Transactional replication
 {: #mssql-migration-rep}
@@ -67,18 +67,18 @@ The process works as follows:
 * Transactional replication creates a snapshot of the objects and data in the publication database and sends it to the subscriber database. The snapshot is applied to the subscriber database.
 * Data changes and schema modifications made at the publisher are sent over to the subscriber in the order they occurred and applied to the subscriber in the same order.
 * When the two databases are synchronized and in a maintenance window:
-   * Stop any access to the publisher.
-   * Ensure that replication has completed.
-   * Delete the subscription.
-   * Enable access to what was the subscriber.
-   * Decommission what was the publisher.
+  * Stop any access to the publisher.
+  * Ensure that replication has completed.
+  * Delete the subscription.
+  * Enable access to what was the subscriber.
+  * Decommission what was the publisher.
 
-Refer to [Transactional Replication](https://docs.microsoft.com/en-us/sql/relational-databases/replication/transactional/transactional-replication?view=sql-server-ver15){: external} for further information.
+Refer to [Transactional Replication](https://docs.microsoft.com/en-us/sql/relational-databases/replication/transactional/transactional-replication?view=sql-server-ver15){:external} for further information.
 
 ## Database mirroring
 {: #mssql-migration-mirror}
 
-Database mirroring was deprecated in SQL Server 2012, however, is still referenced in SQL 2019 documentation, refer to [Database mirroring in SQL Server](https://docs.microsoft.com/en-us/sql/connect/ado-net/sql/database-mirroring-sql-server?view=sql-server-ver15){: external}. It is discussed here for completeness of migration methods, however, carefully research this approach if you want to employ it in your migration.
+Database mirroring was deprecated in SQL Server 2012, however, is still referenced in SQL 2019 documentation, refer to [Database mirroring in SQL Server](https://docs.microsoft.com/en-us/sql/connect/ado-net/sql/database-mirroring-sql-server?view=sql-server-ver15){:external}. It is discussed here for completeness of migration methods, however, carefully research this approach if you want to employ it in your migration.
 
 Database mirroring in SQL Server allows you to keep a copy, or mirror, of a SQL Server database on a standby server. Mirroring ensures two separate copies of the data always exist. Compared to log shipping, database mirroring is a little more complicated to get set up, and it has more restrictions. Database mirroring is easier to set up if both servers in the partnership are in the same Windows Domain, but if this is not the case, you can use certificates for your endpoint authentication. The basic steps for migration include:
 
@@ -115,4 +115,4 @@ A SQL Server Always On distributed availability group spans two distinct availab
 
 During a maintenance window, a manual failover can be performed to enable the cut-over and the primary database in the target WSFC becomes the source for read/write access from the applications.
 
-For more information, see [Distributed availability groups](https://docs.microsoft.com/en-us/sql/database-engine/availability-groups/windows/distributed-availability-groups?view=sql-server-ver15){: external}.
+For more information, see [Distributed availability groups](https://docs.microsoft.com/en-us/sql/database-engine/availability-groups/windows/distributed-availability-groups?view=sql-server-ver15){:external}.
