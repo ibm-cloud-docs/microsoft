@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-05-23"
+  years: 2021, 2022
+lastupdated: "2022-08-22"
 
 keywords:
 
@@ -33,7 +33,7 @@ subcollection: microsoft
 To create a configuration file, use the SQL Server interactive installer wizard. Follow the wizard through to the Ready to Install page. The path to the configuration file is specified in the Ready to Install page in the configuration file path section. 
 {: shortdesc}
 
-For more information, see [Install SQL Server from the Installation Wizard (Setup)](https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server-from-the-installation-wizard-setup?view=sql-server-ver15){: external}.
+For more information, see [Install SQL Server from the Installation Wizard (Setup)](https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server-from-the-installation-wizard-setup?view=sql-server-ver15){:external}.
 
 To run the interactive installer, enter the following command:
 
@@ -63,7 +63,7 @@ The following parameters were added or modified in the ConfigurationFile.ini:
 
 The ConfigurationFile.ini file used in the deployment patterns is shown. The following commands can be pasted into the `ConfigurationFile.ini` file on the SQL server and used for the quiet install of SQL Server. The following commands should be reviewed for applicability in your environment.
 
-```sh
+```text
 ;SQL Server 2019 Configuration File
 [OPTIONS]
 
@@ -284,3 +284,4 @@ SQLMINMEMORY="0"
 IACCEPTSQLSERVERLICENSETERMS="True"
 
 ```
+{: codeblock}

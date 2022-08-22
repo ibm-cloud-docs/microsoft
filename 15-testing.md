@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-05-24"
+  years: 2021, 2022
+lastupdated: "2022-08-22"
 
 keywords:
 
@@ -38,12 +38,13 @@ This section describes infrastructure testing that can be easily achieved to tes
 
 It is good practice to test the storage subsystem performance. In this test, the Diskspd tool is used to perform disk performance tests. Diskspd is a storage testing tool created by Microsoft and is a command line utility that has a number of available parameters. In our testing, the following commands were used to test each drive:
 
-```sh
+```text
 cd C:\Users\Administrator\Downloads
 .\diskspd.exe -c100G -d300 -r -w40 -t4 -o2 -b64K -Sh -L D:\testfile.dat > TestData.txt
 .\diskspd.exe -c100G -d300 -r -w40 -t4 -o2 -b64K -Sh -L E:\testfile.dat > TestLog.txt
 .\diskspd.exe -c100G -d300 -r -w40 -t4 -o2 -b64K -Sh -L F:\testfile.dat > TestTempDB.txt
 ```
+{: codeblock}
 
 Command options are as follows:
 
@@ -80,6 +81,7 @@ The key information from the test is as follows:
 | Total I/O | 82.03 | 1312.45 | 6.088 |
 | Read I/O  | 49.20 |  787.14 | 7.282 |
 | Write I/O | 32.83 |  525.30 | 4.298 |
+
 {: caption="Table 1. Data drive results" caption-side="top"}
 
 ### Log drive results
@@ -94,6 +96,7 @@ The key information from the test is as follows:
 | Total I/O | 82.03 | 1312.49 | 6.088 |
 | Read I/O  | 49.20 |  787.13 | 7.101 |
 | Write I/O | 32.83 |  525.36 | 4.570 |
+
 {: caption="Table 2. Log drive results" caption-side="top"}
 
 ### Tempdb drive results
@@ -108,6 +111,7 @@ The key information from the test is as follows:
 | Total I/O | 223.58 | 3577.33 | 2.231 |
 | Read I/O  | 134.11 | 2145.77 | 3.615 |
 | Write I/O |  89.47 | 1431.56 | 0.156 |
+
 {: caption="Table 3. Tempdb drive results" caption-side="top"}
 
 ## Failover testing
@@ -147,10 +151,11 @@ There are a number of free, open source or licensed load-testing tools available
 
 1. Download HammerDB-4.1 to the bastion host using the following PowerShell commands:
 
-```sh
+```text
 $client = new-object System.Net.WebClient
 $client.DownloadFile("https://github.com/TPC-Council/HammerDB/releases/download/v4.1/HammerDB-4.1-Win-x64-Setup.exe","C:\Users\Administrator\Downloads\HammerDB-4.1-Win-x64-Setup.exe")
 ```
+{: codeblock}
 
 1. Follow the self-extracting installer installation method at [Installing and Starting HammerDB on Windows](https://www.hammerdb.com/docs/ch01s06.html){: external} to install HammerDB on the bastion host.
 
