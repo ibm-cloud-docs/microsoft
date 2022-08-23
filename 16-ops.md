@@ -57,12 +57,10 @@ IBM Cloud Flow Logs for Virtual Private Cloud (VPC) enable the collection, stora
 A flow log is a summary of the network traffic between two virtual network interface cards (vNICs), within a time window. A flow log describes traffic that security groups or network ACLs accepts or rejects. A flow log contains header information and payload statistics for Transmission Control Protocol (TCP) and User Datagram Protocol (UDP) traffic, but not Internet Control Message Protocol (ICMP) traffic. The key components are as follows:
 
 * Collection - Flow log collectors are configured to collect flow data and the the collectors can be configured with different scopes:
-
     * VPC - Collects data for all network interfaces on a specific VPC.
     * Subnet - Collects data for all network interfaces on a specific subnet.
     * Instance - Collects data for all network interfaces on a specific virtual server.
     * Interface - Collects data for a specific network interface on a specific virtual server.
-
 * Storage - Flow logs are stored in an IBM Cloud Object Storage (COS) bucket. This bucket is configured during the setup of the flow log collector.
 * Presentation - IBM Cloud SQL Query is IBM's serverless SQL service on data on COS, and is used to create queries on the flow logs stored in COS. Refer to [Viewing flow log objects](/docs/vpc?topic=vpc-fl-analyze) and [Using IBM Cloud SQL Query](https://dataplatform.cloud.ibm.com/exchange/public/entry/view/4a9bb1c816fb1e0f31fec5d580e4e14d) for further information.
 
@@ -165,38 +163,38 @@ The following is a short summary of the patching process in an Always On availab
     * Verify the availability group health using the availability dashboard in SQL Server Management Studio. The availability group databases should be in the Synchronized state for the synchronous commit and Synchronizing state for the asynchronous commit mode.
 * Patching:
     * Apply the patch to the secondary replica in the primary MZR i.e. the SQL server in AZ2, if applicable:
-      * Using SSMS, change the failover mode from Automatic to Manual to ensures that no automatic failover happens while the patches are installed.
-      * Using SSMS, suspend data movement for the secondary replica databases so that the primary replica does not send any transaction block to the specific secondary replica.
-      * Via RDP to the server hosting the  secondary replica, apply the CU.
-      * Restart the server.
-      * Once the secondary replica comes online, connect to it using SSMS and perform the following validation:
+        * Using SSMS, change the failover mode from Automatic to Manual to ensures that no automatic failover happens while the patches are installed.
+        * Using SSMS, suspend data movement for the secondary replica databases so that the primary replica does not send any transaction block to the specific secondary replica.
+        * Via RDP to the server hosting the  secondary replica, apply the CU.
+        * Restart the server.
+        * Once the secondary replica comes online, connect to it using SSMS and perform the following validation:
+            * Verify SQL Services are online.
+            * SQL Server version validation.
+            * Review SQL Server error logs for any errors, warnings.
+            * It is also recommended to perform a database consistency checker (DBCC CHECKDB) after applying the patches.
+            * Using SSMS, resume data movement to the secondary replica database and wait for the availability group dashboard to show healthy.
+    * Apply the patch to the secondary replica in the recovery MZR, if applicable:
+        * Using SSMS, suspend data movement for the secondary replica databases so that the primary replica does not send any transaction block to the specific secondary replica.
+        * Via RDP to the server hosting the  secondary replica, apply the CU.
+        * Restart the server.
+        * Once the secondary replica comes online, connect to it using SSMS and perform the following validation:
         * Verify SQL Services are online.
         * SQL Server version validation.
         * Review SQL Server error logs for any errors, warnings.
         * It is also recommended to perform a database consistency checker (DBCC CHECKDB) after applying the patches.
-      * Using SSMS, resume data movement to the secondary replica database and wait for the availability group dashboard to show healthy.
-  * Apply the patch to the secondary replica in the recovery MZR, if applicable:
-      * Using SSMS, suspend data movement for the secondary replica databases so that the primary replica does not send any transaction block to the specific secondary replica.
-      * Via RDP to the server hosting the  secondary replica, apply the CU.
-      * Restart the server.
-      * Once the secondary replica comes online, connect to it using SSMS and perform the following validation:
-        * Verify SQL Services are online.
-        * SQL Server version validation.
-        * Review SQL Server error logs for any errors, warnings.
-        * It is also recommended to perform a database consistency checker (DBCC CHECKDB) after applying the patches.
-      * Using SSMS, resume data movement to the secondary replica database and wait for the availability group dashboard to show healthy.
-  * Apply the patch to the primary replica:
-      * Using SSMS, perform a manual failover from the primary replica to the secondary replica in the primary MZR. After the failover, the  primary replica changes its state to a secondary replica.
-      * Using SSMS, suspend data movement for the secondary replica databases so that the primary replica does not send any transaction block to the specific secondary replica.
-      * Via RDP to the server hosting the secondary replica, apply the CU.
-      * Restart the server.
-      * Once the secondary replica comes online, connect to it using SSMS and perform the following validation:
-        * Verify SQL Services are online.
-        * SQL Server version validation.
-        * Review SQL Server error logs for any errors, warnings.
-        * It is also recommended to perform a database consistency checker (DBCC CHECKDB) after applying the patches.
-        * Using SSMS, perform an availability failback. After the failover, the availability group primary replica is the primary node.
-        * Change the failover mode to automatic for the primary and secondary replicas configured with synchronous data commit mode.
+        * Using SSMS, resume data movement to the secondary replica database and wait for the availability group dashboard to show healthy.
+    * Apply the patch to the primary replica:
+        * Using SSMS, perform a manual failover from the primary replica to the secondary replica in the primary MZR. After the failover, the  primary replica changes its state to a secondary replica.
+        * Using SSMS, suspend data movement for the secondary replica databases so that the primary replica does not send any transaction block to the specific secondary replica.
+        * Via RDP to the server hosting the secondary replica, apply the CU.
+        * Restart the server.
+        * Once the secondary replica comes online, connect to it using SSMS and perform the following validation:
+            * Verify SQL Services are online.
+            * SQL Server version validation.
+            * Review SQL Server error logs for any errors, warnings.
+            * It is also recommended to perform a database consistency checker (DBCC CHECKDB) after applying the patches.
+            * Using SSMS, perform an availability failback. After the failover, the availability group primary replica is the primary node.
+            * Change the failover mode to automatic for the primary and secondary replicas configured with synchronous data commit mode.
 * Post-patching:
     * Using SSMS, perform an availability group failover and failback and validate that the SSMS availability dashboard is healthy.
     * Review the error logs on all replicas.

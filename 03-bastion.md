@@ -188,7 +188,7 @@ This task should not be started until after the AD server has been installed.
 At a PowerShell prompt on the bastion host, enter the following commands that enable the server to join the domain:
 
 * The `Get-DnsClientServerAddress` captures the Interface Index for the IPv4 Ethernet interface, so that the DNS can be changed from the IBM Cloud DNS server to the ADDNS server. The `Add-Computer` command will fail if this step is missed as the server will not be able to locate the domain controller. The `Add-Computer -Server` only accepts FQDN.
-* The `Add-Computer` command adds the server to the domain <domain> using the ADDNS server <ad_server_fqdn> and then restarts the server to make the change effective.
+* The `Add-Computer` command adds the server to the domain `<domain>` using the ADDNS server `<ad_server_fqdn>` and then restarts the server to make the change effective.
 
 ```text
 $dns = "<ADDNS_IP_Address>"

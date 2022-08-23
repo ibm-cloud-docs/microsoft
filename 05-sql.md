@@ -44,8 +44,8 @@ A virtual server of the following specification was selected for the SQL server 
 * **NIC Qty:** 1
 * **Instance Storage:** 150GB
 * **Data Volumes:**
-  * **sqldb01-data:** 1024 GB, Tiered-5IOPS/GB, Provider Managed Encryption
-  * **sqldb01-log:** 1024 GB, Tiered-5IOPS/GB, Provider Managed Encryption
+    * **sqldb01-data:** 1024 GB, Tiered-5IOPS/GB, Provider Managed Encryption
+    * **sqldb01-log:** 1024 GB, Tiered-5IOPS/GB, Provider Managed Encryption
 
 ### Compute
 {: #mssql-sql-order-compute}
@@ -209,7 +209,7 @@ New-StoragePool -FriendlyName "sqllogpool" -StorageSubsystemFriendlyName "Window
 ### Initialize instance storage for tempdb
 {: #mssql-sql-configstorage-tempdb}
 
-The drive for tempdb does not use Storage Spaces as instance storage only consists of a single volume. The following PowerShell command can be used to configure the volume, replace <SerialNumber> with the serial number for the instance storage volume. This command achieves the following:
+The drive for tempdb does not use Storage Spaces as instance storage only consists of a single volume. The following PowerShell command can be used to configure the volume, replace `<SerialNumber>` with the serial number for the instance storage volume. This command achieves the following:
 
 * Creates a drive initialized with a GPT partition and assigned a drive letter of F.
 * The drive is formatted with the NTFS filesystem with a block size of 64KB and assigned a label of TEMPDB.
