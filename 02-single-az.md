@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-05-28"
+  years: 2021, 2022
+lastupdated: "2022-08-22"
 
 keywords:
 
@@ -39,16 +39,15 @@ The deployment pattern, shown in the preceding diagram, consists of the followin
 * VPC - A single VPC.
 * Region - A single region.
 * Subnets - Three subnets in a single AZ:
-   * Bastion - This subnet is used to host a virtual server that will be used for management access.
-   * AD - This subnet hosts an Active Directory (AD) server.
-   * SQL - This subnet hosts the Microsoft SQL Server database.
+    * Bastion - This subnet is used to host a virtual server that will be used for management access.
+    * AD - This subnet hosts an Active Directory (AD) server.
+    * SQL - This subnet hosts the Microsoft SQL Server database.
 * Security groups - The following three security groups are used. The default group was not used. Access Control Lists were not used, but could be used if additional control methods are needed, however, this does introduce a level of complexity.
-   * Bastion - This group is used to protect the bastion host.
-   * AD - This group is used to protect the AD server.
-   * SQL - This group is used to protect the database server.
+    * Bastion - This group is used to protect the bastion host.
+    * AD - This group is used to protect the AD server.
+    * SQL - This group is used to protect the database server.
 * Virtual Servers - Three Microsoft Windows 2019 Standard servers are deployed:
-   * Bastion host - This server allows a central location for access to the environment and a place to host the management tools including SQL Server Management Studio (SMSS). It also hosts an SMB file share so that the AD and database servers can access files downloaded from the Internet to the bastion host.
-   * AD server - This server host the active directory forest/domain. It also the DNS and NTP server for the bastion host and database server. This server uses the IBM Cloud VPC DNS resolvers and NTP server. 
-   * SQL server - This server runs the Microsoft SQL Server database application.
+    * Bastion host - This server allows a central location for access to the environment and a place to host the management tools including SQL Server Management Studio (SMSS). It also hosts an SMB file share so that the AD and database servers can access files downloaded from the Internet to the bastion host.
+    * AD server - This server host the active directory forest/domain. It also the DNS and NTP server for the bastion host and database server. This server uses the IBM Cloud VPC DNS resolvers and NTP server.
+    * SQL server - This server runs the Microsoft SQL Server database application.
 * Floating IP - A single floating IP was associated with the bastion host to allow external access. The Active Directory server and the database server cannot be accessed from the Internet and they cannot access the Internet.
-

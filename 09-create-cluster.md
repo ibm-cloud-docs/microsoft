@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-05-28"
+  years: 2021, 2022
+lastupdated: "2022-08-22"
 
 keywords:
 
@@ -46,7 +46,7 @@ This guide assumes that you:
 2. Add the SQL Admins group to the local Remote Management Users group so users in this group, can execute remote commands.
 3. Allow inbound TCP port 5022 into the server as this port is used for availability group traffic. Install the Failover Clustering feature and then restart the server:
 
-   ```sh
+   ```text
    $domainnb = "<NB_Domain>"
    $group = $domainnb + "\SQLAdmins"
    Add-LocalGroupMember -Group "Remote Management Users" -Member $group
@@ -54,6 +54,8 @@ This guide assumes that you:
    Install-WindowsFeature –Name Failover-Clustering –IncludeManagementTools
    Restart-Computer -Force
    ```
+   {: codeblock}
+
 4. Repeat for the second SQL server.
 
 ## Create a WSFC and enable SQL Always On
@@ -64,7 +66,7 @@ This guide assumes that you:
 3. If there are no errors them create a WSFC cluster with a name of `wsfc01` which includes the two SQL servers `<hostname1>` and `<hostname2>`. The `-ManagementPointNetworkType Distributed` option uses the node IP address of the virtual server which means that secondary IP addressing on the interface is not required. This option creates a Distributed Network Name (DNN), which routes traffic to the appropriate clustered resource.
 4. The cluster quorum is then configured for Node and Disk Majority using a file share on fs01, `\\fs01\clusterwitness-wsfc01`
 
-   ```sh
+   ```text
    $sqldb01 = "<hostname1>"
    $sqldb02 = "<hostname2>"
    Test-Cluster -Node $sqldb01, $sqldb02
@@ -72,6 +74,7 @@ This guide assumes that you:
    Set-ClusterQuorum -NodeAndFileShareMajority \\fs01\clusterwitness-wsfc01
    Enable-SqlAlwaysOn -ServerInstance sqldb01, sqldb02 -Force
    ```
+   {: codeblock}
 
 This activity does not have to be repeated on the second node
 
@@ -82,7 +85,7 @@ The database to be replicated must be backed up and restored to the secondary in
 
 1. On the bastion host, open a PowerShell session.
 
-   ```sh
+   ```text
    $domainnb = "<NB_Domain>"
    $user = $domainnb + "\sqlsvc"
    New-Item -Path "C:\" -Name "TempShare" -ItemType "directory"
@@ -92,15 +95,16 @@ The database to be replicated must be backed up and restored to the secondary in
    $ACL | Set-Acl -Path "C:\TempShare"
    New-SmbShare -Name "TempShare" -Path "C:\TempShare" -FullAccess $user
    ```
+   {: codeblock}
 
 ## Create the endpoints
 {: #mssql-cluster-endpoint}
 
 1. RDP to the first SQL server using a user from the SQL Admins group account and open a PowerShell session.
 2. To participate in Always On availability groups, a server instance requires its own endpoint, which use TCP port 5022 to send and receive traffic between the server instances hosting availability replicas.
-3. The following PowerShell commands are used to configure these endpoints, `Hadr_endpoint`  on the default SQL instances (DEFAULT) on the SQL servers; `<hostname1>` and `<hostname2>` and enables encryption between the endpoints:
+3. The following PowerShell commands are used to configure these endpoints, `Hadr_endpoint`  on the default SQL instances (DEFAULT) on the SQL servers; `<hostname1>`` and <hostname2>` and enables encryption between the endpoints:
 
-   ```sh
+   ```text
    $sqldb01 = "<hostname1>"
    $sqldb02 = "<hostname2>"
    $domainnb = "<NB_Domain>"
@@ -112,6 +116,7 @@ The database to be replicated must be backed up and restored to the secondary in
    $endpoint2 = New-SqlHadrEndpoint Hadr_endpoint -Port 5022 -Path $pathsqldb02 -Encryption Required -EncryptionAlgorithm Aes -Owner $user
    Set-SqlHadrEndpoint -InputObject $endpoint2 -State "Started"
    ```
+   {: codeblock}
 
 To grant connect permissions to the domain service used by the endpoints the following steps are required. If this step is not done then the endpoint ports will not start and will not appear in a `netstat -a` listing:
 
@@ -133,7 +138,7 @@ To configure an availability group, a database must be available on the primary 
 
 1. RDP to the first SQL server using a user from the SQL Admins group account and open a PowerShell session. It is important to set the Recovery mode to `Full` for databases used in availability groups:
 
-   ```sh
+   ```text
    $sql = "
    CREATE DATABASE [TestDatabase]
     CONTAINMENT = NONE
@@ -152,10 +157,11 @@ To configure an availability group, a database must be available on the primary 
    GO "
    Invoke-SqlCmd -ServerInstance sqldb01 -Query $sql
    ```
+   {: codeblock}
 
 2. Prepare the secondary database by using the `Backup-SqlDatabase` and `Restore-SqlDatabase` commands to create a backup of the `TestDatabase` on `<hostname1>` on `TempShare` on `<file_share_host>`, the SQL server instance that hosts the primary replica. Restore the backup to `<hostname2>`, which hosts the secondary replica. The `NoRecovery` restore parameter must be used.
 
-   ```sh
+   ```text
    $sqldb01 = "<hostname1>"
    $sqldb02 = "<hostname2>"
    $filesharehost = "<file_share_host>"
@@ -166,6 +172,7 @@ To configure an availability group, a database must be available on the primary 
    Restore-SqlDatabase -Database "TestDatabase" -BackupFile $backupfiledata -ServerInstance $sqldb02 -NoRecovery  
    Restore-SqlDatabase -Database "TestDatabase" -BackupFile $backupfilelog -ServerInstance $sqldb02 -RestoreAction Log -NoRecovery
    ```
+   {: codeblock}
    
 The new secondary database is in the RESTORING state. Until it is joined to the availability group, it is not accessible.
 
@@ -177,16 +184,17 @@ Databases added to an availability group are known as availability databases. Wh
 1. RDP to the first SQL server using a user from the SQL Admins group account and open a PowerShell session.
 2. To ensure that you do not get path errors then use `Invoke-SQLCmd` which forces the loading of the SQL PowerShell library which is then accessible via the PowerShell drive tree. PowerShell treats the objects in SQL Server similar to files in a directory. Replace `<hostname1>` with the hostname of the SQL server:
 
-   ```sh
+   ```text
    invoke-sqlcmd
    cd SQLSERVER:\SQL\<hostname1>
    ```
+   {: codeblock}
 
 3. To create the availability group, the `New-SqlAvailabilityReplica` command with the -AsTemplate parameter, is used to create an in-memory availability-replica object for each of the two availability replicas to be included in the availability group. Then, the availability group is created by using the `New-SqlAvailabilityGroup` command and referencing the availability-replica objects. The `AutomatedBackupPreference Primary` is used to specifies that the backups should always occur on the primary replica while `-FailureConditionLevel OnCriticalServerErrors` specifies that automatic failover is triggered when a critical server error occurs. It is possible to use the `-SeedingMode Automatic` option which enables direct seeding as this method does not require the backup and restore of a copy of the primary database. For SQL 2019, the version number is 15.
 
    Refer to the [New-SqlAvailabilityGroup](https://docs.microsoft.com/en-us/powershell/module/sqlserver/new-sqlavailabilitygroup?view=sqlserver-ps){: external} documentation for descriptions of other parameters.
 
-   ```sh
+   ```text
    $sqldb01 = "<hostname1>"
    $sqldb02 = "<hostname2>"
    $sqldb01fqdn = "<fqdn1>"
@@ -198,22 +206,26 @@ Databases added to an availability group are known as availability databases. Wh
    $secondaryReplica = New-SqlAvailabilityReplica -Name $sqldb02 -EndpointURL $endpointurl2 -AvailabilityMode "SynchronousCommit" -FailoverMode "Automatic" -Version 15 -AsTemplate
    New-SqlAvailabilityGroup -Name "AG01" -Path $pathsqldb01 -AvailabilityReplica @($primaryReplica,$secondaryReplica) -Database "TestDatabase" -ClusterType WSFC -AutomatedBackupPreference Primary -FailureConditionLevel OnCriticalServerErrors
    ```
+   {: codeblock}
 
 4. Join the secondary replica to the availability group with the following commands. Joining places the secondary database into the ONLINE state and initiates data synchronization with the corresponding primary database. Data synchronization is the process by which changes to a primary database are reproduced on a secondary database. Data synchronization involves the primary database sending transaction log records to the secondary database.
 
-   ```sh
+   ```text
    $sqldb02 = "<hostname2>"
    $pathsqldb02 = "SQLSERVER:\SQL\" + $sqldb02 + " \DEFAULT"
    Join-SqlAvailabilityGroup -Path $pathsqldb02 -Name "AG01" -ClusterType WSFC
    ```
+   {: codeblock}
 
 5. Start data synchronization by joining each secondary database to the availability group:
 
-   ```sh
+   ```text
    $sqldb02 = "<hostname2>"
    $agpathsqldb02 = "SQLSERVER:\SQL\" + $sqldb02 + " \DEFAULT\AvailabilityGroups\AG01"
    Add-SqlAvailabilityDatabase -Path $agpathsqldb02 -Database "TestDatabase"
    ```
+   {: codeblock}
+
 6. Use the dir command to verify the contents of the new availability group e.g. `dir SQLSERVER:\SQL\sqldb01\DEFAULT\AvailabilityGroups\AG01`.
 
 ## Create the availability group distributed network name
@@ -225,7 +237,7 @@ DNN listeners are designed to listen on a unique port. The DNS entry for the lis
 
 RDP to the first SQL server using a user from the SQL Admins group account and open a PowerShell session and use the following commands; to create a DNN resource with the a name of `dnnlsnr-6789`, configures DNS on the AD DNS server of the DNN resource, starts the DNN resource, adds the dependency from availability group resource to the DNN resource and finally resets the availability group resource.
 
-```sh
+```text
 $ag = "AG01"
 $dns = "dnnlsnr"
 $port = "6789"
@@ -238,6 +250,7 @@ Set-ClusterResourceDependency -Resource $ag -Dependency "$DepStr"
 Stop-ClusterResource -Name $ag
 Start-ClusterResource -Name $ag
 ```
+{: codeblock}
 
 Use the following command to allow TCP 6789 through the Windows firewall:
 

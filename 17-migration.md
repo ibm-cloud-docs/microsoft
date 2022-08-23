@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-05-23"
+  years: 2021, 2022
+lastupdated: "2022-08-22"
 
 keywords:
 
@@ -67,11 +67,11 @@ The process works as follows:
 * Transactional replication creates a snapshot of the objects and data in the publication database and sends it to the subscriber database. The snapshot is applied to the subscriber database.
 * Data changes and schema modifications made at the publisher are sent over to the subscriber in the order they occurred and applied to the subscriber in the same order.
 * When the two databases are synchronized and in a maintenance window:
-   * Stop any access to the publisher.
-   * Ensure that replication has completed.
-   * Delete the subscription.
-   * Enable access to what was the subscriber.
-   * Decommission what was the publisher.
+    * Stop any access to the publisher.
+    * Ensure that replication has completed.
+    * Delete the subscription.
+    * Enable access to what was the subscriber.
+    * Decommission what was the publisher.
 
 Refer to [Transactional Replication](https://docs.microsoft.com/en-us/sql/relational-databases/replication/transactional/transactional-replication?view=sql-server-ver15){: external} for further information.
 

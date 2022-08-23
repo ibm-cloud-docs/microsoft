@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-05-24"
+  years: 2021, 2022
+lastupdated: "2022-08-22"
 
 keywords:
 
@@ -38,12 +38,13 @@ This section describes infrastructure testing that can be easily achieved to tes
 
 It is good practice to test the storage subsystem performance. In this test, the Diskspd tool is used to perform disk performance tests. Diskspd is a storage testing tool created by Microsoft and is a command line utility that has a number of available parameters. In our testing, the following commands were used to test each drive:
 
-```sh
+```text
 cd C:\Users\Administrator\Downloads
 .\diskspd.exe -c100G -d300 -r -w40 -t4 -o2 -b64K -Sh -L D:\testfile.dat > TestData.txt
 .\diskspd.exe -c100G -d300 -r -w40 -t4 -o2 -b64K -Sh -L E:\testfile.dat > TestLog.txt
 .\diskspd.exe -c100G -d300 -r -w40 -t4 -o2 -b64K -Sh -L F:\testfile.dat > TestTempDB.txt
 ```
+{: codeblock}
 
 Command options are as follows:
 
@@ -147,10 +148,11 @@ There are a number of free, open source or licensed load-testing tools available
 
 1. Download HammerDB-4.1 to the bastion host using the following PowerShell commands:
 
-```sh
+```text
 $client = new-object System.Net.WebClient
 $client.DownloadFile("https://github.com/TPC-Council/HammerDB/releases/download/v4.1/HammerDB-4.1-Win-x64-Setup.exe","C:\Users\Administrator\Downloads\HammerDB-4.1-Win-x64-Setup.exe")
 ```
+{: codeblock}
 
 1. Follow the self-extracting installer installation method at [Installing and Starting HammerDB on Windows](https://www.hammerdb.com/docs/ch01s06.html){: external} to install HammerDB on the bastion host.
 

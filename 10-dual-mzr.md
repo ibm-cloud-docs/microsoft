@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-05-24"
+  years: 2021, 2022
+lastupdated: "2022-08-22"
 
 keywords:
 
@@ -43,8 +43,8 @@ The dual MZR deployment pattern shown leverages the dual Availability Zone (AZ) 
 * Three Windows Server 2019 Standard virtual servers, one in each AZ in the primary MZR and a third in the recovery MZR, that are Active Directory domain controllers in the same forest\domain.
 * Three Windows Server 2019 Standard virtual servers, one in each AZ in the primary MZR and a third in the recovery MZR, that will become Windows Server Failover Cluster (WSFC) nodes.
 * Always On availability groups provide the ability to keep a discrete set of databases highly available across one or more cluster nodes and work at the database level. Availability groups consist of one primary replica and up to a maximum of eight secondary replicas, and use synchronous or asynchronous data replication. In this deployment:
-   * synchronous replication ios used between the two AZs in the primary MZR.
-   * asynchronous replication is used between the MZRs.
+    * synchronous replication ios used between the two AZs in the primary MZR.
+    * asynchronous replication is used between the MZRs.
 * Distributed Network Names is a name resource in WSFC and Always On availability groups, used for name resolution of the cluster resources.
 
 A file share witness is not required in this deployment because there are an odd number of nodes and Node Majority quorum mode will be used
@@ -96,7 +96,7 @@ Availability group secondary replicas can be configured with one of the followin
 
 When an availability group fails over, a secondary replica becomes the new primary, and the primary replica, if available, becomes a secondary replica.
 
-* Automatic failover - Automatic failovers provide HA and rely on properly configured listener and WSFC objects for their success. Only a synchronous-commit availability mode replica can be the destination of an automatic failover. You can configure the conditions that prompt an automatic failover on a scale of 1 to 5, where 1 indicates that only a total outage of the SQL Server service on the primary replica would initiate a failover, and 5 indicates any of a number of critical to less-severe SQL Server errors. The default is 3, which prompts an automatic failure in the case of an outage or unresponsive primary replica, but also for some critical server conditions. These “flexible failover policy” conditions are detailed at https://docs.microsoft.com/sql/database-engine/availability-groups/windows/flexible-automatic-failover-policy-availability-group#FClevel.
+* Automatic failover - Automatic failovers provide HA and rely on properly configured listener and WSFC objects for their success. Only a synchronous-commit availability mode replica can be the destination of an automatic failover. You can configure the conditions that prompt an automatic failover on a scale of 1 to 5, where 1 indicates that only a total outage of the SQL Server service on the primary replica would initiate a failover, and 5 indicates any of a number of critical to less-severe SQL Server errors. The default is 3, which prompts an automatic failure in the case of an outage or unresponsive primary replica, but also for some critical server conditions. These “flexible failover policy” conditions are detailed at [Configure a flexible automatic failover policy for an Always On availability group](https://docs.microsoft.com/sql/database-engine/availability-groups/windows/flexible-automatic-failover-policy-availability-group#FClevel){: external}.
 * Planned failover - A planned failover can occur only if there is no possibility for data loss. Specifically, this means the failover occurs without using the FORCE parameter to acknowledge warnings in code or in the SSMS dialog boxes. It is only possible to have a planned failover to a secondary replica in synchronouscommit availability mode. You can move an asynchronous-commit availability mode replica to synchronous, wait for the SYNCHRONIZED state, and then issue a planned failover without data loss. Planned failovers should always be initiated via SSMS, T-SQL, or PowerShell.
 * Forced failover - A manually-initiated, forced failover should only be initiated in response to adverse cluster conditions such as the loss of the primary node. Initiate from SSMS wizards, T-SQL commands, or PowerShell and only from Windows Server Failover Cluster Manager as a last resort.
 * Force failover if WSFC quorum is down - You will not be able to force a failover for availability groups based on a WSFC if the WSFC has no quorum. You will first have to force quorum in the Configuration Manager by “rigging” the vote and modifying node weights. You should consider this step only in emergencies, such as when a disaster has disrupted a majority of cluster nodes. This can be accomplished this with a PowerShell script, to force an online node to assume the primary role without a majority of votes.

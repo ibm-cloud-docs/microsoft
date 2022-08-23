@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-05-28"
+  years: 2021, 2022
+lastupdated: "2022-08-22"
 
 keywords:
 
@@ -53,9 +53,9 @@ The traffic flows are as follows, as security groups are stateful, only the init
 * ICMP traffic between internal resources.
 * DNS traffic on UDP 53 to the AD servers.
 * IBM Cloud endpoints traffic:
-   * DNS resolver traffic on UDP 53 to the IBM DNS resolvers 161.26.0.10 and 161.26.0.11.
-   * DNS traffic on UDP 53 to the AD servers.
-   * NTP traffic on UDP 123 to the IBM NTP server at 161.26.0.6.
+    * DNS resolver traffic on UDP 53 to the IBM DNS resolvers 161.26.0.10 and 161.26.0.11.
+    * DNS traffic on UDP 53 to the AD servers.
+    * NTP traffic on UDP 123 to the IBM NTP server at 161.26.0.6.
 
 ## RDP traffic from the Internet
 {: #mssql-securitygroups-rdp1}
@@ -66,7 +66,7 @@ The traffic flows are as follows, as security groups are stateful, only the init
 * Rule: Inbound
 * Protocol: TCP
 * Source Type: IP Address
-* Source: `<IP_Address>`
+* Source: <IP_Address>
 * Value: Ports 3389
 
 ## RDP traffic from the bastion hosts
@@ -83,7 +83,7 @@ The traffic flows are as follows, as security groups are stateful, only the init
 * Rule: Inbound
 * Protocol: TCP
 * Source Type: CIDR
-* Source: `<bastion_subnet>`
+* Source: <bastion_subnet>
 * Value: Ports 3389
 
 ## HTTPS traffic from the bastion hosts
@@ -107,14 +107,14 @@ This SMB traffic is required for domain access and file shares.
 * Rule: Inbound
 * Protocol: TCP
 * Source Type: CIDR
-* Source: `<vpc_prefix>`
+* Source: <vpc_prefix>
 * Value: Ports 139, 445
 
 * Security Group: Bastion, AD and SQL
 * Rule: Inbound
 * Protocol: UDP
 * Source Type: CIDR
-* Source: `<vpc_prefix>`
+* Source: <vpc_prefix>
 * Value: Ports 137-138
 
 * Security Group: SQL
@@ -128,14 +128,14 @@ This SMB traffic is required for domain access and file shares.
 * Rule: Outbound
 * Protocol: TCP
 * Destination Type: CIDR
-* Destination: `<vpc_prefix>`
+* Destination: <vpc_prefix>
 * Value: Ports 445
 
 * Security Group: Bastion, AD and SQL
 * Rule: Outbound
 * Protocol: UDP
 * Destination Type: CIDR
-* Destination: `<vpc_prefix>`
+* Destination: <vpc_prefix>
 * Value: Ports 137-138
 
 ## RPC traffic between the Windows cluster nodes.
@@ -145,42 +145,42 @@ This SMB traffic is required for domain access and file shares.
 * Rule: Inbound
 * Protocol: TCP
 * Source Type: CIDR
-* Source: `<sql_subnet>`
+* Source: <sql_subnet>
 * Value: Ports 135
 
 * Security Group: SQL
 * Rule: Outbound
 * Protocol: TCP
 * Destination Type: CIDR
-* Destination: `<sql_subnet>`
+* Destination: <sql_subnet>
 * Value: Ports 135
 
 * Security Group: SQL
 * Rule: Inbound
 * Protocol: TCP
 * Source Type: CIDR
-* Source: `<sql_subnet>`
+* Source: <sql_subnet>
 * Value: Ports 49152-65535
 
 * Security Group: SQL
 * Rule: Outbound
 * Protocol: TCP
 * Destination Type: CIDR
-* Destination: `<sql_subnet>`
+* Destination: <sql_subnet>
 * Value: Ports 49152-65535
 
 * Security Group: SQL
 * Rule: Inbound
 * Protocol: UDP
 * Source Type: CIDR
-* Source: `<sql_subnet>`
+* Source: <sql_subnet>
 * Value: Ports 49152-65535
 
 * Security Group: SQL
 * Rule: Outbound
 * Protocol: UDP
 * Destination Type: CIDR
-* Destination: `<sql_subnet>`
+* Destination: <sql_subnet>
 * Value: Ports 49152-65535
 
 ## Replication traffic between domain controllers
