@@ -182,7 +182,7 @@ The new secondary database is in the RESTORING state. Until it is joined to the 
 Databases added to an availability group are known as availability databases. When adding databases, the database must be an online, read-write database and exist on the server instance that will hosts the primary replica in the WSFC. When added, the database joins the availability group as a primary database and remains available to clients. No secondary database exists until backups of the primary database are restored to the server instance that will become the secondary replica. The new secondary database is in the RESTORING state until it is joined to the availability group. Refer to [Use automatic seeding to initialize a secondary replica for an Always On availability group](https://docs.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatic-seeding-secondary-replicas?view=sql-server-ver15){: external} if the backup and restore method is not used.
 
 1. RDP to the first SQL server using a user from the SQL Admins group account and open a PowerShell session.
-2. To ensure that you do not get path errors then use `Invoke-SQLCmd` which forces the loading of the SQL PowerShell library which is then accessible via the PowerShell drive tree. PowerShell treats the objects in SQL Server similar to files in a directory. Replace <hostname1> with the hostname of the SQL server:
+2. To ensure that you do not get path errors then use `Invoke-SQLCmd` which forces the loading of the SQL PowerShell library which is then accessible via the PowerShell drive tree. PowerShell treats the objects in SQL Server similar to files in a directory. Replace `<hostname1>` with the hostname of the SQL server:
 
    ```text
    invoke-sqlcmd
