@@ -70,11 +70,11 @@ When planning your SQL Server on IBM Cloud VPC, there are three storage componen
 * Boot volumes - When virtual server is created, a 100 GB, 3 IOPS/GB boot volume is created from block storage and attached to the instance. By default, boot volumes are encrypted by IBM-managed encryption, however, customer-managed encryption is an option. Boot volumes can not be detached, deleted or increased or reduced in size. Boot volumes are always deleted when the virtual server is deleted. Boot volumes contain the operating system files.
 * Data volumes - Data volumes leverage block storage for VPC and provides hypervisor-mounted, high-performance data storage that is stored redundantly across multiple physical disks in an Availability Zone (AZ) to prevent data loss due to failure of any single component. Data volumes range from 10 GB to 2000 GB and maximum IOPS varies based on volume size and the IOPS tier profile selected. For example, the max IOPS for a 5 IOPS/GB volume of 2000 GB is 10,000 IOPS. You are able to select a volume profile that best meets your requirements as volume profiles are available as three predefined IOPS tiers or as a custom IOPS profile:
 
-  * 3 IOPS/GB - A general-purpose tier profile provides IOPS/GB performance suitable for a virtual server instance Balanced profile.
-  * 5 IOPS/GB - This profile provides IOPS/GB performance suitable for a virtual server instance Compute profile.
-  * 10 IOPS/GB - Typically used for a virtual server instance Memory profile.
+    * 3 IOPS/GB - A general-purpose tier profile provides IOPS/GB performance suitable for a virtual server instance Balanced profile.
+    * 5 IOPS/GB - This profile provides IOPS/GB performance suitable for a virtual server instance Compute profile.
+    * 10 IOPS/GB - Typically used for a virtual server instance Memory profile.
 
-  For more information, see [IOPs tiers](/docs/vpc?topic=vpc-block-storage-profiles#tiers). The number of volumes that can be attached to a virtual server depends on how many vCPUs the virtual server contains. For more information, see [Volume attachment limits](/docs/vpc?topic=vpc-attaching-block-storage#vol-attach-limits). Data volumes can be detached and attached to virtual servers as required. Data volumes are encrypted by default with IBM-managed encryption. You can also encrypt data volumes using your own root keys. Refer to [Block storage capacity and performance](/docs/vpc?topic=vpc-capacity-performance) advice on choosing the optimal block storage volume size and performance level.
+    For more information, see [IOPs tiers](/docs/vpc?topic=vpc-block-storage-profiles#tiers). The number of volumes that can be attached to a virtual server depends on how many vCPUs the virtual server contains. For more information, see [Volume attachment limits](/docs/vpc?topic=vpc-attaching-block-storage#vol-attach-limits). Data volumes can be detached and attached to virtual servers as required. Data volumes are encrypted by default with IBM-managed encryption. You can also encrypt data volumes using your own root keys. Refer to [Block storage capacity and performance](/docs/vpc?topic=vpc-capacity-performance) advice on choosing the optimal block storage volume size and performance level.
 * Instance Storage - Optionally, the virtual server can include [Instance storage](/docs/vpc?topic=vpc-instance-storage) which provides solid state drives directly attached to the virtual server instance when the instance is provisioned. Instance storage disk provides fast, temporary storage to improve performance of many workloads including transactional processing. The data stored on instance storage is ephemeral, meaning it is tied directly to the lifecycle of the instance. The instance storage disk is automatically created and destroyed with the instance. Instance storage data is not lost, however, when an instance is rebooted. If performance is a concern then MS SQL Server tempdb can be placed on instance storage
 
 For more information, see [About Block Storage for VPC](/docs/vpc?topic=vpc-block-storage-about).
@@ -100,7 +100,7 @@ This task should not be started until after the AD server has been installed.
 At a Powershell prompt on the SQL server enter the following commands that enable the server to join the domain:
 
 * The `Get-DnsClientServerAddress` captures the Interface Index for the IPv4 Ethernet interface, so that the DNS can be changed from the IBM Cloud DNS server to the ADDNS server. The `Add-Computer` command will fail if this step is missed as the server will not be able to locate the domain controller. The `Add-Computer -Server` only accepts FQDN.
-* The `Add-Computer` command adds the server to the domain <domain> using the ADDNS server <ad_server_fqdn> and then restarts the server to make the change effective.
+* The `Add-Computer` command adds the server to the domain `<domain>` using the ADDNS server `<ad_server_fqdn>` and then restarts the server to make the change effective.
 
 ```text
 $dns = "<ADDNS_IP_Address>"
@@ -122,7 +122,7 @@ Add-Computer -DomainName $domain -Server $adserver -Restart -Credential $credent
 The following PowerShell commands are used to accomplish the following:
 
 * Check to see the status of the SMB2, typically this protocol is disabled in the virtual server image. If disabled it can be enabled using `Set-SmbServerConfiguration` , as it is required for SMB to operate.
-* Connect to the share on <bastion_hostname>\Downloads,as the Z: drive using the user <smbuser> and the password <share_password>
+* Connect to the share on `<bastion_hostname>\Downloads`,as the Z: drive using the user `<smbuser>` and the password `<share_password>`
 
 ```text
 $bastion = "<bastion_hostname>"
@@ -168,7 +168,7 @@ Number FriendlyName       SerialNumber                         MediaType   CanPo
 ### Create sqldatapool storage pool
 {: #mssql-sql-configstorage-sqldatapool}
 
-The following PowerShell command can be used to configure the sqldatapool storage pool, replace <SerialNumber> with the serial number for the sqldb01-data volume. This command achieves the following:
+The following PowerShell command can be used to configure the sqldatapool storage pool, replace `<SerialNumber>` with the serial number for the sqldb01-data volume. This command achieves the following:
 
 * Creates a storage pool called sqldatapool.
 * Creates a virtual disk in this pool called sqldata for striping (-ResiliencySettingName simple).
@@ -193,7 +193,7 @@ The -NumberOfColumns matches the number of disks to stripe data across.
 ### Create the sqllogpool storage pool
 {: #mssql-sql-configstorage-sqllogpool}
 
-The following PowerShell command can be used to configure the sqllogpool storage pool, replace <SerialNumber> with the serial number for the sqldb01-log volume. This command achieves the following:
+The following PowerShell command can be used to configure the sqllogpool storage pool, replace `<SerialNumber>` with the serial number for the sqldb01-log volume. This command achieves the following:
 
 * Creates a storage pool called sqllogpool.
 * Creates a virtual disk in this pool called sqllog for striping (-ResiliencySettingName simple).
@@ -235,7 +235,7 @@ This documentation assumes that you are using option 3, have created a Configura
 
  `C:\Users\Administrator\Downloads\SQL2019\Extracted\SETUP.exe /ConfigurationFile=C:\Users\Administrator\Downloads\ConfigurationFile.ini /TCPENABLED="1" /SQLSVCPASSWORD="<svc_password>" /AGTSVCPASSWORD="<agt_password>"`
 
-<svc_password> is the password for the domain service account used for SQL Server service and <agt_password> is the password for the domain service account used for SQL Agent.
+`<svc_password>` is the password for the domain service account used for SQL Server service and `<agt_password>` is the password for the domain service account used for SQL Agent.
 
 By default, SQL Server is installed with TCP protocol disabled and `/TCPENABLED="1"` enables TCP.
 
@@ -258,7 +258,6 @@ Use the following command to allow TCP 1433 through the Windows firewall `New-Ne
 
 Use the following command to allow TCP 5022 through the Windows firewall if you are going to configure availability groups
 `New-NetFirewallRule -DisplayName 'SQL-AG-Inbound' -Profile Domain -Direction Inbound -Action Allow -Protocol TCP -LocalPort 5022`
-
 
 ## Configure the NTP server
 {: #mssql-sql-ntp}
