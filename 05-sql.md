@@ -30,7 +30,7 @@ subcollection: microsoft
 # SQL server
 {: #mssql-sql}
 
-This section steps through the build tasks needed to create the SQL server.
+This section steps through the build tasks needed to create the SQL server. Customers may choose to either use the bundle offering with a pre-configured installation or use the Bring Your Own License (BYOL) and Do It Yourself (DIY) build process after you have ordered a virtual server instance in your VPC. Customers should determine which approach matches their requirements and proceed accordingly. The information below explains how you would pick a server profile to match your needs.
 {: shortdesc}
 
 ## Order a virtual server
