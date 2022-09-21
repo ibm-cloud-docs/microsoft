@@ -34,4 +34,4 @@ subcollection: microsoft
 
 Customers should review these revised rules and their current spending and usage patterns to determine which deployment model makes the most financial and technical performance sense. Some workloads are steady state and require consistent infrastructure and some workloads are bursty and can be cycled on and off to take advantage of hourly pricing.
 
-Depending on the {{site.data.keyword.cloud_notm}} solution, Microsoft software is purchased pay as you go (hourly, monthly, yearly) on shared and dedicated resources. For BYOL, Microsoft currently limits their software to dedicated hosts which are priced on a monthly and yearly basis.
+Depending on the {{site.data.keyword.cloud_notm}} solution, Microsoft software is purchased pay as you go (hourly, monthly, yearly) on shared and dedicated resources. For BYOL, you can provision BYOL Microsoft licenses on dedicated and shared hosts which are priced on a monthly and yearly basis.
