@@ -8,7 +8,7 @@ toc:
     service-name: microsoft
     category: compute
     audience: solution
-    href: /docs/microsoft?topic=microsoft-overview
+    href: /docs/microsoft
     product-page: https://cloud.ibm.com/
     path: microsoft
     label: Microsoft Software on IBM Cloud
