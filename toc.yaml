@@ -121,7 +121,7 @@ toc:
                 - 17-migration.md
                 - 18-configini.md
 
-        - navgroup:
+    - navgroup:
         id: help
         topics:
         - topic: microsoft-help-support.md
