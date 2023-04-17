@@ -1,43 +1,41 @@
-#  Name your file `toc.yaml`
-#  Make sure you include all nav file coding requirements, as defined in https://test.cloud.ibm.com/docs/writing?topic=writing-code-nav
-#  Anything with a fully qualified URL with `http` or `https` will get an external link icon added to the nav entry
-
 toc:
   properties:
     subcollection: microsoft
-    service-name: microsoft
-    category: compute
+    category: solution_docs
+    use-case: BusinessProcessAutomation
     audience: solution
+    content-type: solution
     href: /docs/microsoft
-    product-page: https://cloud.ibm.com/
     path: microsoft
+    description: IBM Cloud has a strategic relationship with Microsoft to offer their suite of software natively in our cloud and as Bring Your Own Licenses (BYOL).
     label: Microsoft Software on IBM Cloud
 
   entries:
     - navgroup:
-        id: learn
+        id: overview
         topics:
         - topic: microsoft-overview.md
-          navtitle: Overview of Microsoft on IBM
+
+    - navgroup:
+        id: plan
+        topics:
         - topic: microsoft-byol.md
-          navtitle: Bring Your Own License (BYOL)
         - topic: microsoft-license-mobility.md
           navtitle: License Mobility Overview
         - topic: microsoft-license-mobility-process.md
-          navtitle: License Mobility Deployment Process
 
     - navgroup:
-        id: howto
+        id: deploy
         topics:
 
         - topicgroup:
             label: Microsoft on VPC
             topics:
             - link:
-                label: Virtual Private Cloud Solution
+                label: Virtual Private Cloud solution
                 href: https://www.ibm.com/cloud/vpc
             - link:
-                label: Virtual Private Cloud Start
+                label: Virtual Private Cloud docs
                 href: /vpc/vpc-getting-started
             - link:
                 label: BYOL on VPC
@@ -80,10 +78,10 @@ toc:
             label: Microsoft on Classic
             topics:
             - link:
-                label: IBM Cloud Bare Metal Severs Solution
+                label: IBM Cloud Bare Metal Servers solution
                 href: https://www.ibm.com/cloud/bare-metal-servers/classic
             - link:
-                label: IBM Cloud Bare Metal Servers Docs
+                label: IBM Cloud Bare Metal Servers docs
                 href: /bare-metal/bare-metal-getting-started
             - link:
                 label: Guest OS Lifecycle for Bare Metal
@@ -122,20 +120,20 @@ toc:
                 - 16-ops.md
                 - 17-migration.md
                 - 18-configini.md
-            - topicgroup:
-                label: Troubleshooting MS SQL
-                topics:
-                - ts-ms-sql-verify-open-ports.md
-                - ts-ms-sql-remove-smb-share.md
-                - ts-ms-sql-rename-virtual-servers.md
-                - ts-ms-sql-add-text-to-file.md
-                - ts-ms-sql-use-domain-service-account.md
-                - ts-ms-sql-verify-dnn.md
-                - ts-ms-sql-verify-server-listening.md
-                - ts-ms-sql-windows-server-updates.md
 
-    - navgroup:
+        - navgroup:
         id: help
         topics:
         - topic: microsoft-help-support.md
           navtitle: Getting help and support
+        - topicgroup:
+            label: Troubleshooting MS SQL
+            topics:
+            - ts-ms-sql-verify-open-ports.md
+            - ts-ms-sql-remove-smb-share.md
+            - ts-ms-sql-rename-virtual-servers.md
+            - ts-ms-sql-add-text-to-file.md
+            - ts-ms-sql-use-domain-service-account.md
+            - ts-ms-sql-verify-dnn.md
+            - ts-ms-sql-verify-server-listening.md
+            - ts-ms-sql-windows-server-updates.md
