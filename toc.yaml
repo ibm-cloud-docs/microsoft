@@ -9,13 +9,11 @@ toc:
     path: microsoft
     description: IBM Cloud has a strategic relationship with Microsoft to offer their suite of software natively in our cloud and as Bring Your Own Licenses (BYOL).
     label: Microsoft Software on IBM Cloud
-
   entries:
     - navgroup:
         id: overview
         topics:
         - topic: microsoft-overview.md
-
     - navgroup:
         id: plan
         topics:
@@ -23,11 +21,9 @@ toc:
         - topic: microsoft-license-mobility.md
           navtitle: License Mobility Overview
         - topic: microsoft-license-mobility-process.md
-
     - navgroup:
         id: deploy
         topics:
-
         - topicgroup:
             label: Microsoft on VPC
             topics:
@@ -37,23 +33,17 @@ toc:
             - link:
                 label: Virtual Private Cloud docs
                 href: /vpc/vpc-getting-started
-            - link:
-                label: BYOL on VPC
-                href: /vpc/vpc-byol-vpc-about
-            - link:
-                label: Guest OS Lifecycle on VPC
-                href: /vpc/vpc-guest-os-lifecycle
-
-        - topicgroup:
-            label: Microsoft Images - Day 0
-            topics:
-            - link:
-                label: MSFT ISO Images offered
-                href: /vpc/vpc-about-images
+            - include: ../vpc/vsi_is_byol_about.md
             - link:
                 label: Lifecycle of MSFT Images VPC
                 href: /vpc/vpc-guest-os-lifecycle
-
+        - topicgroup:
+            label: Microsoft Images - Day 0
+            topics:
+            - include: ../vpc/vsi-images.md
+            - link:
+                label: Lifecycle of MSFT Images VPC
+                href: /vpc/vpc-guest-os-lifecycle
         - topicgroup:
             label: Microsoft Images - Day 1
             topics:
@@ -63,17 +53,18 @@ toc:
             - link:
                 label: Select a MSFT custom Image
                 href: /vpc/vpc-planning-custom-images
-            - link:
-                label: Creating a MSFT custom Image
-                href: /vpc/vpc-create-windows-custom-image
-
+            - include: ../vpc/vsi_is_create_windows_custom_image.md
+            - topicgroup:
+                label: Select Microsoft SQL catalog Images
+                topics:
+                - microsoft-mssql-image.md
+                - microsoft-find-catalog-images.md
+                - microsoft-image-properties.md
+                - microsoft-migrate-stock-catalog-image.md
         - topicgroup:
             label: Microsoft Images - Day 2
             topics:
-            - link:
-                label: Patch a Microsoft image - Security and Patches
-                href: /vpc/vpc-responsibilities-vpc
-        
+            - include: ../vpc/vpc-responsibilities.md
         - topicgroup:
             label: Microsoft on Classic
             topics:
@@ -83,13 +74,9 @@ toc:
             - link:
                 label: IBM Cloud Bare Metal Servers docs
                 href: /bare-metal/bare-metal-getting-started
-            - link:
-                label: Guest OS Lifecycle for Bare Metal
-                href: /bare-metal/bare-metal-getting-started
-            - link:
-                label: About Software for Bare Metal
-                href: /bare-metal/bare-metal-about-software
-
+            - include: ../bare-metal/classic-guest-os-lifecycle.md
+            - include: ../bare-metal/about-software.md
+ 
         - topicgroup:
             label: Microsoft SQL Server on VPC
             topics:
@@ -120,20 +107,19 @@ toc:
                 - 16-ops.md
                 - 17-migration.md
                 - 18-configini.md
-
     - navgroup:
         id: help
         topics:
         - topic: microsoft-help-support.md
           navtitle: Getting help and support
         - topicgroup:
-            label: Troubleshooting MS SQL
-            topics:
-            - ts-ms-sql-verify-open-ports.md
-            - ts-ms-sql-remove-smb-share.md
-            - ts-ms-sql-rename-virtual-servers.md
-            - ts-ms-sql-add-text-to-file.md
-            - ts-ms-sql-use-domain-service-account.md
-            - ts-ms-sql-verify-dnn.md
-            - ts-ms-sql-verify-server-listening.md
-            - ts-ms-sql-windows-server-updates.md
+                label: Troubleshooting MS SQL
+                topics:
+                - ts-ms-sql-verify-open-ports.md
+                - ts-ms-sql-remove-smb-share.md
+                - ts-ms-sql-rename-virtual-servers.md
+                - ts-ms-sql-add-text-to-file.md
+                - ts-ms-sql-use-domain-service-account.md
+                - ts-ms-sql-verify-dnn.md
+                - ts-ms-sql-verify-server-listening.md
+                - ts-ms-sql-windows-server-updates.md
