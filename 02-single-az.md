@@ -32,7 +32,7 @@ subcollection: microsoft
 
 The single Availability Zone (AZ) deployment pattern is suitable for development or test databases and production that do not require high availability or rapid disaster recovery. Backups taken, using products such as IBM Spectrum Protect or Veeam can be used if required, to restore databases on failure.
 
-![Single AZ deployment pattern](/images/singleaz.svg "Single AZ deployment pattern"){: caption="Figure 1. Single AZ deployment pattern" caption-side="bottom"}
+![Single AZ deployment pattern](/images/singleaz.svg "Single AZ deployment pattern"){: caption="Single AZ deployment pattern" caption-side="bottom"}
 
 The deployment pattern, shown in the preceding diagram, consists of the following:
 

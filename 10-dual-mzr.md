@@ -32,7 +32,7 @@ subcollection: microsoft
 
 IBM Cloud Windows Server 2019 Standard virtual servers configured as Windows Server Failover Cluster (WSFC) nodes, and SQL Server Enterprise edition with SQL Server Always On availability groups configured on each node form the basis of the dual Multi-Zone Region (MZR) deployment pattern. This architecture along with MS ADDNS provides a SQL Server deployment for disaster recovery.
 
-![Dual MZR deployment pattern](/images/dualmzr.svg "Dual MZR deployment pattern"){: caption="Figure 1. Dual MZR deployment pattern" caption-side="bottom"}
+![Dual MZR deployment pattern](/images/dualmzr.svg "Dual MZR deployment pattern"){: caption="Dual MZR deployment pattern" caption-side="bottom"}
 
 The dual MZR deployment pattern shown leverages the dual Availability Zone (AZ) pattern, and extends it so that there is a copy of the databases in a remote region; therefore, this pattern is suitable for production databases that require disaster recovery and leverages the following core technologies:
 

@@ -81,7 +81,7 @@ The key information from the test is as follows:
 | Total I/O | 82.03 | 1312.45 | 6.088 |
 | Read I/O  | 49.20 |  787.14 | 7.282 |
 | Write I/O | 32.83 |  525.30 | 4.298 |
-{: caption="Table 1. Data drive results" caption-side="top"}
+{: caption="Data drive results" caption-side="top"}
 
 ### Log drive results
 {: #mssql-testing-storage-log}
@@ -95,7 +95,7 @@ The key information from the test is as follows:
 | Total I/O | 82.03 | 1312.49 | 6.088 |
 | Read I/O  | 49.20 |  787.13 | 7.101 |
 | Write I/O | 32.83 |  525.36 | 4.570 |
-{: caption="Table 2. Log drive results" caption-side="top"}
+{: caption="Log drive results" caption-side="top"}
 
 ### Tempdb drive results
 {: #mssql-testing-storage-tempdb}
@@ -109,7 +109,7 @@ The key information from the test is as follows:
 | Total I/O | 223.58 | 3577.33 | 2.231 |
 | Read I/O  | 134.11 | 2145.77 | 3.615 |
 | Write I/O |  89.47 | 1431.56 | 0.156 |
-{: caption="Table 3. Tempdb drive results" caption-side="top"}
+{: caption="Tempdb drive results" caption-side="top"}
 
 ## Failover testing
 {: #mssql-testing-failover}
