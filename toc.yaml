@@ -123,3 +123,4 @@ toc:
                 - ts-ms-sql-verify-dnn.md
                 - ts-ms-sql-verify-server-listening.md
                 - ts-ms-sql-windows-server-updates.md
+        - include: ../infrastructure-hub/faq-microsoft.md
