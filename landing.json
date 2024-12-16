@@ -1,0 +1,29 @@
+{
+   "version": 2,
+   "title": "Microsoft Software on IBM Cloud",
+   "introduction": "IBM Cloud has a strategic relationship with Microsoft to offer their suite of software. We offer their software natively in our cloud offerings and as Bring Your Own Licenses (BYOL). ",
+   "section_topics": {
+     "links": [
+       {
+         "title": "Overview of Microsoft on IBM",
+         "href": "/docs/microsoft?topic=microsoft-microsoft-overview"
+       },
+       {
+         "title": "Licensed Mobility through Microsoft Software Assurance Overview",
+         "href": "/docs/microsoft?topic=microsoft-microsoft-license-mobility"
+       },
+       {
+         "title": "Microsoft on VPC - Bring your own license",
+         "href": "/docs/microsoft?topic=microsoft-byol-vpc-about"
+       },
+       {
+         "title": "Microsoft on Classic - Lifecycle for operating systems and add-ons",
+         "href": "/docs/microsoft?topic=microsoft-product-lifecycle-classic"
+       },
+       {
+         "title": "About Microsoft SQL on VPC",
+         "href": "/docs/microsoft?topic=microsoft-mssql-about"
+       }
+     ]
+   }
+ }

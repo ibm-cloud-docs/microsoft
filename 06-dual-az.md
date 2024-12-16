@@ -32,7 +32,7 @@ subcollection: microsoft
 
 IBM Cloud Windows Server 2019 Standard virtual servers configured as Windows Server Failover Cluster (WSFC) nodes, and SQL Server Enterprise edition with SQL Server Always On availability groups configured on each node form the basis of the dual AZ deployment pattern. This architecture along with MS ADDNS and a Windows file share used as a witness server provides a highly available SQL Server deployment.
 
-![Dual AZ deployment pattern](/images/dualaz.svg "Dual AZ deployment pattern"){: caption="Figure 1. Dual AZ deployment pattern" caption-side="bottom"}
+![Dual AZ deployment pattern](/images/dualaz.svg "Dual AZ deployment pattern"){: caption="Dual AZ deployment pattern" caption-side="bottom"}
 
 The dual AZ deployment pattern shown is suitable for production databases that require high availability and leverages the following core technologies:
 

@@ -1,0 +1,5 @@
+includes:
+  - https://github.ibm.com/cloud-docs/bare-metal
+  - https://github.ibm.com/cloud-docs/vpc
+  - https://github.ibm.com/cloud-docs-solutions/infrastructure-hub
+  
