@@ -141,8 +141,8 @@ Center for Internet Security (CIS) benchmarks are configuration baselines and be
 There are no Microsoft update servers on the the IBM Cloud VPC network, therefore, access to the Microsoft repositories via the Internet is required. This can be achieved by:
 
 * Attaching a Floating IP to the virtual server, refer to [Use a Floating IP address for external connectivity of a virtual server instance](/docs/vpc?topic=vpc-about-networking-for-vpc#floating-ip-for-external-connectivity) for more information.
-* Attache a Public Gateway to a subnet, refer to [Use a public gateway for external connectivity of a subnet](/docs/vpc?topic=vpc-about-networking-for-vpc#public-gateway-for-external-connectivity) for more information.
-* Deploy Windows Server Update Services (WSUS) on a virtual server instance on the bastion subnet and use a public gateway for exteranal access to Microsoft. Refer to [Deploy Windows Server Update Services](https://docs.microsoft.com/en-us/windows-server/administration/windows-server-update-services/deploy/deploy-windows-server-update-services) to understand how to deploy WSUS and how to configure servers to use the WSUS server.
+* Attach a Public Gateway to a subnet, refer to [Use a public gateway for external connectivity of a subnet](/docs/vpc?topic=vpc-about-networking-for-vpc#public-gateway-for-external-connectivity) for more information.
+* Deploy Windows Server Update Services (WSUS) on a virtual server instance on the bastion subnet and use a public gateway for external access to Microsoft. Refer to [Deploy Windows Server Update Services](https://docs.microsoft.com/en-us/windows-server/administration/windows-server-update-services/deploy/deploy-windows-server-update-services) to understand how to deploy WSUS and how to configure servers to use the WSUS server.
 
 You will need to update security groups and or access control lists to allow this update traffic.
 
