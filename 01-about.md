@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021, 2022
-lastupdated: "2022-08-22"
+  years: 2021, 2025
+lastupdated: "2025-03-06"
 
 keywords:
 
@@ -30,7 +30,7 @@ subcollection: microsoft
 # About Microsoft SQL on VPC
 {: #mssql-about}
 
-IBM Cloud VPC now offers a bundle of Windows Server 2019 Standard and SQL Server 2019 Web edition. Customers may choose to either use the bundle offering with a pre-configured installation or use the Bring Your Own License (BYOL) and Do It Yourself (DIY) build process after you have ordered a virtual server instance in your VPC. Customers should determine which approach matches their requirements and proceed accordingly.
+IBM Cloud VPC now offers a bundle of Windows Server Standard and SQL Server Web edition. Customers may choose to either use the bundle offering with a pre-configured installation or use the Bring Your Own License (BYOL) and Do It Yourself (DIY) build process after you have ordered a virtual server instance in your VPC. Customers should determine which approach matches their requirements and proceed accordingly.
 
 This documentation provides guidance on how to deploy, configure, and tune the BYOL components, including virtual server instances, storage volumes, networking, and security
 
@@ -83,24 +83,20 @@ From a virtual disk, you can create one or more volumes, where you can configure
 
 For more information, see [Storage Spaces](https://docs.microsoft.com/en-us/windows-server/storage/storage-spaces/overview){: external}.
 
-## About MS SQL Server 2019 editions
+## About MS SQL Server editions
 {: #mssql-about-editions}
 
 A summary of SQL Server editions are as follows:
 
-* Evaluation - Functionally the same as the Enterprise edition, and free for a 180 day trial but it isn’t supported. Can be upgraded to any edition but Express.
-* Express LocalDB - A lightweight version of Express that has all of its programmability features, runs in user mode and has a fast, zero-configuration installation and a short list of prerequisites.
 * Express - Appropriate only for environments in which data size is small, is not expected to grow. This edition has no SQL Server Agent to automate backups. This edition is limited to a maximum of 1 socket or 4 cores or 1,410 MB available buffer pool memory or 10 GB individual database size.
-* Express with Advanced Services - Similar to Express edition in limitations, but includes some additional features including R integration, full-text search, and distributed replay.
 * Web - Appropriate for production environments but limited to low-cost server environments for web applications.
 * Standard - Appropriate for production environments but limited to a maximum of 4 sockets or 24 cores or 128 GB of buffer pool memory.
-* Developer - Appropriate for all pre-production environments, and supports the same features and capacity as the Enterprise edition and is free.
 
-For a full reference of SQL Server editions, refer to [Editions and supported features of SQL Server 2019 (15.x)](https://docs.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-version-15?view=sql-server-ver15){: external}.
+For a full reference of SQL Server editions, refer to [Editions and supported features of SQL Server 2022 (15.x)](https://learn.microsoft.com/en-us/sql/sql-server/editions-and-components-of-sql-server-2022?view=sql-server-ver16&preserve-view=true){: external}.
 
 ## About Microsoft licensing
 {: #mssql-about-licenses}
 
 IBM Cloud virtual servers can include Microsoft Windows operating system licenses. For more information, see [Stock images](/docs/vpc?topic=vpc-about-images#stock-images). Microsoft Windows operating system Bring Your Own License (BYOL) cannot be used to provision public instances and can be used only to provision virtual server instances on dedicated hosts. For more information, see [BYOL for Windows operating systems](/docs/vpc?topic=vpc-byol-vpc-about#byol-vpc-windows).
 
-For information on Microsoft SQL Server licenses, refer to [SQL Server 2019 licensing guide](https://download.microsoft.com/download/e/2/9/e29a9331-965d-4faa-bd2e-7c1db7cd8348/SQL_Server_2019_Licensing_guide.pdf){: external}.
+For information on Microsoft SQL Server licenses, refer to [SQL Server 2022 licensing guide](https://www.microsoft.com/licensing/terms/productoffering/SQLServer/MCA){: external}.
