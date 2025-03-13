@@ -32,24 +32,11 @@ subcollection: microsoft
 
 When you create a VSI, you specify the operating system image that your VSIs use. You can use Microsoft SQL Server images for VSIs.
 
-If you are using Microsoft SQL on VPC, you have two choices, either:
-
-1.  Microsoft SQL 2022 Web edition, use a stock image.
-
-2.  All other Microsoft SQL servers use a catalog image.
-
-## Selecting an image
-{: #microsoft-mssql-select}
-
-To select an image:
-
-1.  In the Images and profiles section, select **Change image**.
-2.  On the pop-out window, select either the **Stock** or **Catalog** tab.
-
-    *  Select the Stock Image tab to select the Microsoft SQL Server Web edition 2022 with Windows Server 2022.
-    *  Select the Catalog image tab for all other versions and select the image that you want from the list.
+Microsoft SQL catalog images are now available in the Catalog. You can use the [IBM Cloud console](https://cloud.ibm.com/) to order the Microsoft SQL Server. For more information, refer the [Getting started with Catalog images on VPC](/docs/vpc?topic=vpc-getting-started-images-on-vpc-catalog).
 
 ## Microsoft SQL Server catalog images
 {: #microsoft-mssql-catalog}
 
 IBM provides several images that can be used for Microsoft SQL Server catalog images. The images are listed on the **Change image** pop-up window from the Image and profile section of the Virtual server for VPC form.
+
+For 2019 Web edition, you need to use the stock images. For information on how to use the stock images, refer [Getting started with Stock images on VPC](/docs/vpc?topic=vpc-getting-started-images-on-vpc-stock&interface=api).

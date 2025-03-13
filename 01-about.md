@@ -30,9 +30,11 @@ subcollection: microsoft
 # About Microsoft SQL on VPC
 {: #mssql-about}
 
-IBM Cloud VPC now offers a bundle of Windows Server Standard and SQL Server Web edition. Customers may choose to either use the bundle offering with a pre-configured installation or use the Bring Your Own License (BYOL) and Do It Yourself (DIY) build process after you have ordered a virtual server instance in your VPC. Customers should determine which approach matches their requirements and proceed accordingly.
+IBM Cloud VPC now offers a bundle of Windows Server Standard and Microsoft SQL Server. You may choose to either use the bundle offering with a pre-configured installation or use the Bring Your Own License (BYOL) and Do It Yourself (DIY) build process after you have ordered a virtual server instance in your VPC. You should determine which approach matches their requirements and proceed accordingly.
 
-This documentation provides guidance on how to deploy, configure, and tune the BYOL components, including virtual server instances, storage volumes, networking, and security
+This documentation provides guidance on how to deploy, configure, and tune the BYOL components, including virtual server instances, storage volumes, networking, and security.
+
+You can use the [IBM Cloud console](https://cloud.ibm.com/) to order the Microsoft SQL Server. For more information, refer the [Getting started with Catalog images on VPC](/docs/vpc?topic=vpc-getting-started-images-on-vpc-catalog).
 
 This documentation does not cover SQL Server Integration Services (SSIS), Reporting Services (SSRS), or Analysis
 Services (SSAS).
@@ -88,6 +90,7 @@ For more information, see [Storage Spaces](https://docs.microsoft.com/en-us/wind
 
 A summary of SQL Server editions are as follows:
 
+* Evaluation - Functionally the same as the Enterprise edition, and free for a 180 day trial but it isn’t supported. Can be upgraded to any edition but Express.
 * Express - Appropriate only for environments in which data size is small, is not expected to grow. This edition has no SQL Server Agent to automate backups. This edition is limited to a maximum of 1 socket or 4 cores or 1,410 MB available buffer pool memory or 10 GB individual database size.
 * Web - Appropriate for production environments but limited to low-cost server environments for web applications.
 * Standard - Appropriate for production environments but limited to a maximum of 4 sockets or 24 cores or 128 GB of buffer pool memory.
