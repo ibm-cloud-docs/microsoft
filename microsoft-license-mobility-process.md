@@ -30,7 +30,7 @@ subcollection: microsoft
 # License Mobility Deployment Process
 {: #microsoft-license-mobility-process}
 
-## Step-by-step deployment overview 
+## Step-by-step deployment overview
 {: #microsoft-license-mobility-process-overview}
 
 Review the License Mobility through Software Assurance Verification Guide for Customers. This document can guide you through the [process](https://download.microsoft.com/download/7/9/b/79bd917e-760b-48b6-a266-796b3e47c47a/License_Mobility_Customer_Verification_Guide.pdf){: external}.
@@ -48,7 +48,7 @@ You may choose Microsoft Azure or an eligible Service Provider as a License Mobi
 
 **3. Fill out a verification form.**
 
-Find the [license verification form for your region]([http://www.microsoftvolumelicensing.com/DocumentSearch.aspx](https://www.microsoft.com/licensing/docs)){: external}.
+Find the [license verification form for your region](https://www.microsoft.com/licensing/docs){: external}.
 The form asks you for your Agreement Number, Enrollment Number, and Software Assurance expiration date, so make sure that you have the information available. Guidance for completing the form is at the License Mobility web page listed in step 2.
 
 A new form is required if you add a product, renew Software Assurance, or switch Authorized Mobility Partners.

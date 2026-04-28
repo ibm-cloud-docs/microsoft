@@ -33,11 +33,7 @@ subcollection: microsoft
 
 To view the specific details of a Microsoft SQL image: 
 
-1.  Click **Menu icon ![Menu icon](../../icons/icon_hamburger.svg) > VPC Infrastructure > Network > VPC Infrastructure > Images**.
+1.  Click **Menu icon ![Menu icon](../../icons/icon_hamburger.svg) > VPC Infrastructure > Compute > VPC Infrastructure > Images**.
 
 2. Select the **Catalog images** tab.
 3. Select the image that you want to view. 
-
-
-
-
